@@ -10,13 +10,11 @@ export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Schedule the state update to avoid cascading renders
     const timer = setTimeout(() => setMounted(true), 0);
     return () => clearTimeout(timer);
   }, []);
 
   if (!mounted) {
-    // Skeleton de carregamento simples mantendo o tamanho exato do botão final
     return (
       <Button variant="ghost" size="icon" disabled className="opacity-50">
         <span className="sr-only">Carregando tema</span>
@@ -32,7 +30,7 @@ export function ThemeToggle() {
       size="icon"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       aria-label={`Alternar para tema ${isDark ? 'claro' : 'escuro'}`}
-      className="rounded-full" // Opcional: arredondado combina bem com ícones isolados
+      className="rounded-full"
     >
       <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
       <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />

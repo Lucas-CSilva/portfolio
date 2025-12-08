@@ -1,94 +1,79 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import type { Project } from '@/lib/types';
+import { useCallback, useEffect, useState } from 'react';
 import { ProjectCard } from './ProjectCard';
+import type { Project } from '@/lib/types';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 interface MobileCarouselProps {
   projects: Project[];
 }
 
 export function MobileCarousel({ projects }: MobileCarouselProps) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: 'start',
-    dragFree: false,
-    loop: false,
-    containScroll: 'trimSnaps',
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: false, 
+    align: 'center',
+    containScroll: 'trimSnaps'
   });
-
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
 
   useEffect(() => {
     if (!emblaApi) return;
-
-    const onSelect = () => {
-      setSelectedIndex(emblaApi.selectedScrollSnap());
-      setCanScrollPrev(emblaApi.canScrollPrev());
-      setCanScrollNext(emblaApi.canScrollNext());
-    };
-
-    // Listen for select events
     emblaApi.on('select', onSelect);
     emblaApi.on('reInit', onSelect);
+  }, [emblaApi, onSelect]);
 
-    return () => {
-      emblaApi.off('select', onSelect);
-      emblaApi.off('reInit', onSelect);
-    };
-  }, [emblaApi]);
+  const scrollTo = useCallback(
+    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    [emblaApi]
+  );
+
+  if (projects.length === 0) return null;
 
   return (
-    <div role="region" aria-label="Project gallery carousel">
-      <div ref={emblaRef} className="overflow-hidden cursor-grab active:cursor-grabbing">
-        <div className="flex gap-4 px-6 touch-pan-y">
+    <div className="relative flex flex-col gap-6">
+      {/* Viewport do Carrossel */}
+      <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
+        <div className="flex touch-pan-y -ml-4">
           {projects.map((project) => (
-            <div
-              key={project.id}
-              className="flex-[0_0_85%] min-w-0"
-              style={{
-                scrollSnapAlign: 'start',
-              }}
+            <div 
+              key={project.id} 
+              className="flex-[0_0_85%] min-w-0 pl-4 sm:flex-[0_0_60%]"
             >
-              <ProjectCard {...project} />
+              <div className="h-full transform transition-transform duration-300 hover:scale-[1.02]">
+                <ProjectCard {...project} />
+              </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Position Indicators with live region */}
-      <div
-        role="group"
-        aria-label="Carousel navigation"
-        className="flex justify-center gap-2 mt-6"
-      >
-        <div className="sr-only" aria-live="polite" aria-atomic="true">
-          Showing project {selectedIndex + 1} of {projects.length}
-        </div>
+      {/* Indicadores (Dots) */}
+      <div className="flex justify-center items-center gap-1.5 py-2">
         {projects.map((_, index) => (
-          <button
+          <Button
             key={index}
-            onClick={() => emblaApi?.scrollTo(index)}
-            aria-label={`Go to slide ${index + 1} of ${projects.length}`}
-            aria-current={selectedIndex === index ? 'true' : 'false'}
-            className={`w-2 h-2 rounded-full transition-all ${
-              selectedIndex === index
-                ? 'bg-accent-primary w-6'
-                : 'bg-border-default hover:bg-text-muted'
-            }`}
+            variant="ghost"
+            size="icon"
+            onClick={() => scrollTo(index)}
+            aria-label={`Ir para projeto ${index + 1}`}
+            aria-current={index === selectedIndex ? 'true' : 'false'}
+            className={cn(
+              "h-2.5 w-2.5 rounded-full p-0 hover:bg-primary/50 transition-all duration-300",
+              index === selectedIndex 
+                ? "bg-primary w-6" // Active: Nord10 (Blue) + Largura expandida
+                : "bg-muted-foreground/30" // Inactive: Tom suave
+            )}
           />
         ))}
       </div>
-
-      {/* Visual feedback for endpoints */}
-      {!canScrollPrev && (
-        <div className="absolute left-0 top-0 bottom-0 w-8 pointer-events-none bg-gradient-to-r from-app-bg/50 to-transparent" />
-      )}
-      {!canScrollNext && (
-        <div className="absolute right-0 top-0 bottom-0 w-8 pointer-events-none bg-gradient-to-l from-app-bg/50 to-transparent" />
-      )}
     </div>
   );
 }
