@@ -1,3 +1,6 @@
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+
 interface TechBadgeProps {
   technology: string;
   active?: boolean;
@@ -5,20 +8,17 @@ interface TechBadgeProps {
 }
 
 export function TechBadge({ technology, active = false, onClick }: TechBadgeProps) {
-  const baseClasses = "inline-block px-3 py-1 text-sm font-medium rounded-full transition-colors";
-  const colorClasses = active
-    ? "bg-accent-primary text-white"
-    : "bg-app-elevated text-text-secondary";
-  const interactiveClasses = onClick ? "cursor-pointer hover:bg-accent-hover" : "";
-
   return (
-    <span
-      className={`${baseClasses} ${colorClasses} ${interactiveClasses}`}
+    <Badge
+      variant={active ? "default" : "secondary"}
+      className={cn(
+        "transition-all duration-300 font-mono text-xs tracking-wide",
+        onClick && "cursor-pointer hover:opacity-80",
+        !active && "bg-secondary/50 text-secondary-foreground hover:bg-secondary"
+      )}
       onClick={onClick}
-      role={onClick ? "button" : undefined}
-      tabIndex={onClick ? 0 : undefined}
     >
       {technology}
-    </span>
+    </Badge>
   );
 }

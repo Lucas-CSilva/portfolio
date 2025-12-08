@@ -2,6 +2,7 @@
 
 import type { Technology } from '@/lib/types';
 import { useProjectFilter } from '@/lib/hooks/useProjectFilter';
+import { Button } from '@/components/ui/button';
 
 interface FilterControlsProps {
   technologies: Technology[];
@@ -11,38 +12,41 @@ export function FilterControls({ technologies }: FilterControlsProps) {
   const { activeTech, setFilter } = useProjectFilter();
 
   return (
-    <div className="mb-8">
-      <h3 className="text-lg font-semibold text-text-primary mb-4">
-        Filter by Technology
+    <div className="mb-8 space-y-4">
+      <h3 className="text-lg font-semibold text-foreground">
+        Filtrar por Tecnologia
       </h3>
-      <div className="flex flex-wrap gap-3">
-        <button
+      <div className="flex flex-wrap gap-2">
+        <Button
+          variant={activeTech === null ? "default" : "outline"}
+          size="sm"
           onClick={() => setFilter(null)}
-          aria-pressed={activeTech === null}
-          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-            activeTech === null
-              ? 'bg-accent-primary text-white'
-              : 'bg-app-surface text-text-secondary hover:bg-app-elevated border border-border-default'
-          }`}
+          className="transition-all"
         >
-          All Projects
-        </button>
+          Todos os Projetos
+        </Button>
+        
         {technologies.map((tech) => {
           const isActive = activeTech === tech.slug;
           return (
-            <button
+            <Button
               key={tech.slug}
+              variant={isActive ? "default" : "outline"}
+              size="sm"
               onClick={() => setFilter(tech.slug)}
-              aria-pressed={isActive}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                isActive
-                  ? 'bg-accent-primary text-white'
-                  : 'bg-app-surface text-text-secondary hover:bg-app-elevated border border-border-default'
-              }`}
+              className="group relative transition-all"
             >
               {tech.name}
-              <span className="ml-2 text-sm opacity-75">({tech.count})</span>
-            </button>
+              <span 
+                className={`ml-2 text-xs py-0.5 px-1.5 rounded-full ${
+                    isActive 
+                    ? "bg-primary-foreground/20 text-primary-foreground" 
+                    : "bg-muted text-muted-foreground"
+                }`}
+              >
+                {tech.count}
+              </span>
+            </Button>
           );
         })}
       </div>

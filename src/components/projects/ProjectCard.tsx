@@ -1,20 +1,36 @@
 import type { Project } from '@/lib/types';
 import { TechBadge } from '@/components/ui/TechBadge';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export function ProjectCard(project: Project) {
   return (
-    <article className="bg-app-surface border border-border-default rounded-lg p-6 hover:bg-app-elevated transition-colors">
-      <h3 className="text-xl font-semibold text-text-primary mb-3">
-        {project.title}
-      </h3>
-      <p className="text-text-secondary mb-4 leading-relaxed">
-        {project.description}
-      </p>
-      <div className="flex flex-wrap gap-2">
-        {project.technologies.map((tech) => (
-          <TechBadge key={tech} technology={tech} />
-        ))}
-      </div>
-    </article>
+    <Card className="h-full flex flex-col hover:shadow-md transition-all duration-300 hover:-translate-y-1 border-muted/60">
+      <CardHeader>
+        <div className="flex justify-between items-start gap-4">
+          <CardTitle className="text-xl font-bold text-foreground">
+            {project.title}
+          </CardTitle>
+          {/* Espaço para ícone de link externo futuro */}
+        </div>
+        <CardDescription className="text-muted-foreground line-clamp-2">
+           {/* line-clamp ajuda a manter altura uniforme nos cards */}
+           {project.description}
+        </CardDescription>
+      </CardHeader>
+      
+      <CardContent className="mt-auto pt-4">
+        <div className="flex flex-wrap gap-2">
+          {project.technologies.map((tech) => (
+            <TechBadge key={tech} technology={tech} />
+          ))}
+        </div>
+      </CardContent>
+    </Card>
   );
 }
