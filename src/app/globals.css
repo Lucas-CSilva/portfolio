@@ -151,13 +151,6 @@ body {
   border-radius: 4px;
 }
 
-/* Smooth transitions for theme changes */
-* {
-  transition-property: background-color, color, border-color;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
-}
-
 /* Disable transitions on page load */
 html.no-transitions * {
   transition: none !important;

@@ -12,7 +12,7 @@ export function TechBadge({ technology, active = false, onClick }: TechBadgeProp
     <Badge
       variant={active ? "default" : "secondary"}
       className={cn(
-        "transition-all duration-300 font-mono text-xs tracking-wide",
+        "transition-all font-mono text-xs tracking-wide",
         onClick && "cursor-pointer hover:opacity-80",
         !active && "bg-secondary/50 text-secondary-foreground hover:bg-secondary"
       )}

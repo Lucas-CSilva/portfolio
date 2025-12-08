@@ -10,7 +10,7 @@ import {
 
 export function ProjectCard(project: Project) {
   return (
-    <Card className="h-full flex flex-col hover:shadow-md transition-all duration-300 hover:-translate-y-1 border-muted/60">
+    <Card className="h-full flex flex-col hover:shadow-md transition-all hover:-translate-y-1 border-muted/60">
       <CardHeader>
         <div className="flex justify-between items-start gap-4">
           <CardTitle className="text-xl font-bold text-foreground">
