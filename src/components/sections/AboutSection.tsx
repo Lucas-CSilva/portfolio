@@ -27,20 +27,20 @@ export function AboutSection() {
                         <div className="space-y-6">
                             <div className="space-y-2">
                                 <p className="text-sm font-medium tracking-wide uppercase text-accent-primary">
-                                    Software Engineer
+                                    Backend Developer
                                 </p>
                                 <h1 className="text-5xl lg:text-6xl font-semibold text-foreground tracking-tight">
                                     Lucas Silva
                                 </h1>
                             </div>
                             <h2 className="text-2xl lg:text-3xl font-normal text-default-600 leading-relaxed max-w-xl">
-                                Building modern web experiences with precision and attention to detail
+                                Construindo sistemas robustos e escaláveis com foco em performance e qualidade
                             </h2>
                         </div>
 
                         <p className="text-base text-default-500 leading-relaxed max-w-xl">
-                            Specialized in creating scalable frontend architectures using React, Next.js, and TypeScript. 
-                            Focused on design systems, performance optimization, and delivering enterprise-grade solutions.
+                            Desenvolvedor backend especializado em criar arquiteturas escaláveis e sistemas distribuídos. 
+                            Formado em Ciência da Computação pela UNESP, com foco em APIs robustas, performance e soluções de nível empresarial.
                         </p>
 
                         {/* Social Links - Minimal & Professional */}
@@ -88,16 +88,16 @@ export function AboutSection() {
                         <CardBody className="p-8 space-y-8">
                             <div className="space-y-4">
                                 <h3 className="text-xl font-semibold tracking-tight">
-                                    Professional Background
+                                    Formação e Experiência
                                 </h3>
                                 <div className="space-y-4 text-sm text-default-600 leading-relaxed">
                                     <p>
-                                        Experienced frontend engineer with a proven track record of delivering 
-                                        high-quality web applications for diverse industries and scales.
+                                        Desenvolvedor backend com sólida formação em Ciência da Computação pela UNESP, 
+                                        com experiência em construir aplicações backend de alta qualidade para diversas indústrias.
                                     </p>
                                     <p>
-                                        My approach combines technical excellence with user-centric design, 
-                                        ensuring solutions that are both performant and accessible.
+                                        Minha abordagem combina excelência técnica com boas práticas de engenharia de software, 
+                                        garantindo soluções que são performáticas, seguras e escaláveis.
                                     </p>
                                 </div>
                             </div>
@@ -106,15 +106,19 @@ export function AboutSection() {
                             
                             <div className="space-y-4">
                                 <h4 className="text-xs font-semibold uppercase tracking-wider text-default-500">
-                                    Core Technologies
+                                    Tecnologias Principais
                                 </h4>
                                 <div className="flex flex-wrap gap-2">
                                     {[
-                                        'React',
-                                        'Next.js',
-                                        'TypeScript',
-                                        'Tailwind CSS',
-                                        'Node.js',
+                                        'Java',
+                                        'Spring Boot',
+                                        'WebFlux',
+                                        'C#',
+                                        '.NET',
+                                        'Python',
+                                        'FastAPI',
+                                        'MongoDB',
+                                        'MS SQL',
                                     ].map((skill) => (
                                         <Chip
                                             key={skill}
