@@ -147,18 +147,31 @@ body {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px; /* Offset for sticky header */
+  
+  /* Professional Typography Foundation */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-feature-settings: 'cv11' on, 'ss01' on; /* Inter font features for better readability */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   background-color: var(--bg-app);
   color: var(--text-primary);
-  transition: background-color 300ms ease, color 300ms ease;
+  transition: background-color 200ms ease-out, color 200ms ease-out;
+  
+  /* Executive Typography */
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: -0.011em; /* Subtle optical correction */
 }
 
 /* Focus visible styles for accessibility */
 *:focus-visible {
   outline: 2px solid var(--accent-primary);
-  outline-offset: 2px;
+  outline-offset: 3px;
   border-radius: 4px;
 }
 
@@ -166,6 +179,61 @@ body {
 html.no-transitions * {
   transition: none !important;
 }
+
+/* ============================================================================
+   Professional Typography Scale
+   ============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+h1 { font-size: 3.815rem; }  /* ~61px */
+h2 { font-size: 3.052rem; }  /* ~49px */
+h3 { font-size: 2.441rem; }  /* ~39px */
+h4 { font-size: 1.953rem; }  /* ~31px */
+h5 { font-size: 1.563rem; }  /* ~25px */
+h6 { font-size: 1.25rem; }   /* ~20px */
+
+p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+}
+
+/* ============================================================================
+   Professional Elevation System (Shadows)
+   ============================================================================ */
+
+.elevation-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.elevation-md {
+  box-shadow: 
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.elevation-lg {
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.elevation-xl {
+  box-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme shadow adjustments */
+.dark .elevation-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3); }
+.dark .elevation-md { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4); }
+.dark .elevation-lg { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5); }
+.dark .elevation-xl { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.6); }
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

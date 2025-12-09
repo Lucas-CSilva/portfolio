@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Button, Card, CardBody, CardHeader, Chip, Link, Divider } from '@heroui/react';
+import { Button, Card, CardBody, Chip, Link, Divider } from '@heroui/react';
 import { Github, Linkedin, Mail, ArrowDown } from 'lucide-react';
 
 export function AboutSection() {
@@ -18,91 +18,95 @@ export function AboutSection() {
     return (
         <section
             id="about"
-            className="relative min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8"
+            className="relative min-h-screen flex items-center justify-center py-32"
         >
-            <div className="container mx-auto max-w-6xl">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    {/* Hero Content */}
-                    <div className="space-y-8">
-                        <div className="space-y-4">
-                            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground leading-tight">
-                                Olá, sou{' '}
-                                <span className="text-primary">
+            <div className="container mx-auto max-w-6xl px-6 lg:px-8">
+                <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-16 items-center">
+                    {/* Hero Content - Professional & Clean */}
+                    <div className="space-y-12">
+                        <div className="space-y-6">
+                            <div className="space-y-2">
+                                <p className="text-sm font-medium tracking-wide uppercase text-accent-primary">
+                                    Software Engineer
+                                </p>
+                                <h1 className="text-5xl lg:text-6xl font-semibold text-foreground tracking-tight">
                                     Lucas Silva
-                                </span>
-                            </h1>
-                            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-default-500">
-                                Frontend Developer & UI/UX Enthusiast
+                                </h1>
+                            </div>
+                            <h2 className="text-2xl lg:text-3xl font-normal text-default-600 leading-relaxed max-w-xl">
+                                Building modern web experiences with precision and attention to detail
                             </h2>
                         </div>
 
-                        <p className="text-lg text-default-500 leading-relaxed">
-                            Especializado em criar experiências web modernas e performáticas
-                            usando React, Next.js e TypeScript. Apaixonado por design systems,
-                            acessibilidade e código limpo.
+                        <p className="text-base text-default-500 leading-relaxed max-w-xl">
+                            Specialized in creating scalable frontend architectures using React, Next.js, and TypeScript. 
+                            Focused on design systems, performance optimization, and delivering enterprise-grade solutions.
                         </p>
 
-                        {/* Social Links */}
-                        <div className="flex flex-wrap gap-4">
+                        {/* Social Links - Minimal & Professional */}
+                        <div className="flex flex-wrap gap-3">
                             <Button
-                                variant="solid"
-                                color="primary"
-                                size="lg"
+                                variant="bordered"
+                                size="md"
                                 as={Link}
                                 href="https://github.com"
                                 isExternal
-                                startContent={<Github className="h-5 w-5" />}
+                                startContent={<Github className="h-4 w-4" />}
+                                className="font-medium"
                             >
                                 GitHub
                             </Button>
                             <Button
                                 variant="bordered"
-                                size="lg"
+                                size="md"
                                 as={Link}
                                 href="https://linkedin.com"
                                 isExternal
-                                startContent={<Linkedin className="h-5 w-5" />}
+                                startContent={<Linkedin className="h-4 w-4" />}
+                                className="font-medium"
                             >
                                 LinkedIn
                             </Button>
                             <Button
                                 variant="bordered"
-                                size="lg"
+                                size="md"
                                 as={Link}
                                 href="mailto:contato@example.com"
-                                startContent={<Mail className="h-5 w-5" />}
+                                startContent={<Mail className="h-4 w-4" />}
+                                className="font-medium"
                             >
-                                Email
+                                Contact
                             </Button>
                         </div>
                     </div>
 
-                    {/* About Me Card */}
-                    <Card shadow="lg" isBlurred>
-                        <CardHeader>
-                            <h3 className="text-2xl font-bold">
-                                Sobre Mim
-                            </h3>
-                        </CardHeader>
-                        <CardBody className="space-y-6">
-                            <div className="space-y-4 text-default-500">
-                                <p>
-                                    Com mais de X anos de experiência no desenvolvimento web,
-                                    tenho focado em criar interfaces intuitivas e acessíveis
-                                    que proporcionam experiências excepcionais aos usuários.
-                                </p>
-                                <p>
-                                    Minha abordagem combina design thinking com práticas
-                                    modernas de desenvolvimento, sempre buscando performance,
-                                    escalabilidade e manutenibilidade do código.
-                                </p>
+                    {/* About Card - Premium Enterprise Style */}
+                    <Card 
+                        shadow="none"
+                        className="border border-divider bg-content1/50 backdrop-blur-sm"
+                    >
+                        <CardBody className="p-8 space-y-8">
+                            <div className="space-y-4">
+                                <h3 className="text-xl font-semibold tracking-tight">
+                                    Professional Background
+                                </h3>
+                                <div className="space-y-4 text-sm text-default-600 leading-relaxed">
+                                    <p>
+                                        Experienced frontend engineer with a proven track record of delivering 
+                                        high-quality web applications for diverse industries and scales.
+                                    </p>
+                                    <p>
+                                        My approach combines technical excellence with user-centric design, 
+                                        ensuring solutions that are both performant and accessible.
+                                    </p>
+                                </div>
                             </div>
                             
                             <Divider />
                             
-                            <div>
-                                <h4 className="font-semibold text-foreground mb-3">
-                                    Skills Principais
+                            <div className="space-y-4">
+                                <h4 className="text-xs font-semibold uppercase tracking-wider text-default-500">
+                                    Core Technologies
                                 </h4>
                                 <div className="flex flex-wrap gap-2">
                                     {[
@@ -111,13 +115,15 @@ export function AboutSection() {
                                         'TypeScript',
                                         'Tailwind CSS',
                                         'Node.js',
-                                        'shadcn/ui',
                                     ].map((skill) => (
                                         <Chip
                                             key={skill}
-                                            color="primary"
                                             variant="flat"
-                                            size="md"
+                                            size="sm"
+                                            classNames={{
+                                                base: 'bg-default-100 border border-divider',
+                                                content: 'text-default-700 font-medium text-xs',
+                                            }}
                                         >
                                             {skill}
                                         </Chip>
@@ -128,17 +134,17 @@ export function AboutSection() {
                     </Card>
                 </div>
 
-                {/* Scroll Indicator */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+                {/* Scroll Indicator - Subtle */}
+                <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
                     <Button
                         variant="light"
-                        size="lg"
+                        size="sm"
                         isIconOnly
                         onPress={scrollToProjects}
-                        className="animate-bounce"
+                        className="text-default-400 hover:text-default-600 animate-bounce"
                         aria-label="Scroll to projects"
                     >
-                        <ArrowDown className="h-6 w-6" />
+                        <ArrowDown className="h-5 w-5" />
                     </Button>
                 </div>
             </div>

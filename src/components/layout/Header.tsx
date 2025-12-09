@@ -5,9 +5,9 @@ import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link } from '@heroui/react';
 
 const navigation = [
-    { name: 'About Me', href: '#about' },
-    { name: 'Destaques', href: '#featured' },
-    { name: 'Galeria', href: '#gallery' },
+    { name: 'About', href: '#about' },
+    { name: 'Featured', href: '#featured' },
+    { name: 'Projects', href: '#gallery' },
 ];
 
 export function Header() {
@@ -15,7 +15,7 @@ export function Header() {
 
     React.useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 10);
+            setIsScrolled(window.scrollY > 20);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -38,33 +38,41 @@ export function Header() {
 
     return (
         <Navbar 
-            isBlurred={isScrolled}
+            isBlurred={false}
             isBordered={isScrolled}
             maxWidth="xl"
             position="sticky"
+            height="5rem"
             classNames={{
-                base: 'transition-all duration-300',
-                wrapper: 'px-4 sm:px-6 lg:px-8',
+                base: `transition-all duration-200 ${
+                    isScrolled 
+                        ? 'bg-app-bg/80 backdrop-blur-xl backdrop-saturate-150 border-b border-divider/50' 
+                        : 'bg-transparent'
+                }`,
+                wrapper: 'px-6 lg:px-8 max-w-7xl',
+                item: 'data-[active=true]:font-semibold',
             }}
         >
             <NavbarBrand>
                 <Link 
                     href="/"
                     color="foreground"
-                    className="font-bold text-xl"
+                    className="font-semibold text-lg tracking-tight hover:opacity-70 transition-opacity"
+                    underline="none"
                 >
-                    Portfolio
+                    Lucas Silva
                 </Link>
             </NavbarBrand>
 
-            <NavbarContent className="hidden md:flex gap-1" justify="center">
+            <NavbarContent className="hidden md:flex gap-8" justify="center">
                 {navigation.map((item) => (
                     <NavbarItem key={item.name}>
                         <Link
                             href={item.href}
                             color="foreground"
                             onPress={(e) => handleNavClick(e as any, item.href)}
-                            className="font-medium"
+                            className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
+                            underline="none"
                         >
                             {item.name}
                         </Link>
