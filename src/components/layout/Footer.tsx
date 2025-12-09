@@ -1,52 +1,51 @@
+'use client';
+
 import { Github, Linkedin, Mail } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button, Link, Divider } from '@heroui/react';
 
 export function Footer() {
   return (
-    <footer className="w-full border-t border-border bg-card/30 backdrop-blur-sm py-12 md:py-16">
-      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+    <footer className="w-full py-12 md:py-16">
+      <Divider />
+      <div className="container mx-auto px-6 pt-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
         
-        {/* Identidade / Copyright */}
-        <div className="space-y-2">
+        <div>
           <p className="text-sm font-medium text-foreground">
             Desenvolvido por Lucas C. Silva
           </p>
         </div>
 
-        {/* Links Sociais (Reutilizando estilo Ghost para minimalismo) */}
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="sm" asChild className="text-muted-foreground hover:text-primary">
-            <a 
-              href="https://github.com/lucas-csilva" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              aria-label="Ver perfil no GitHub"
-            >
-              <Github className="h-5 w-5 mr-2" />
-              GitHub
-            </a>
+        <div className="flex items-center gap-2">
+          <Button 
+            variant="light" 
+            size="sm" 
+            as={Link}
+            href="https://github.com/lucas-csilva"
+            isExternal
+            startContent={<Github className="h-5 w-5" />}
+          >
+            GitHub
           </Button>
           
-          <Button variant="ghost" size="sm" asChild className="text-muted-foreground hover:text-primary">
-            <a 
-              href="https://linkedin.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              aria-label="Ver perfil no LinkedIn"
-            >
-              <Linkedin className="h-5 w-5 mr-2" />
-              LinkedIn
-            </a>
+          <Button 
+            variant="light" 
+            size="sm" 
+            as={Link}
+            href="https://linkedin.com"
+            isExternal
+            startContent={<Linkedin className="h-5 w-5" />}
+          >
+            LinkedIn
           </Button>
 
-          <Button variant="ghost" size="sm" asChild className="text-muted-foreground hover:text-primary">
-            <a 
-              href="mailto:contato@exemplo.com"
-              aria-label="Enviar email"
-            >
-              <Mail className="h-5 w-5 mr-2" />
-              Email
-            </a>
+          <Button 
+            variant="light" 
+            size="sm" 
+            as={Link}
+            href="mailto:contato@exemplo.com"
+            startContent={<Mail className="h-5 w-5" />}
+          >
+            Email
           </Button>
         </div>
       </div>

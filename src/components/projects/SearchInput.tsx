@@ -2,6 +2,7 @@
 
 import { Search, X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
+import { Input, Kbd } from '@heroui/react';
 
 interface SearchInputProps {
   value: string;
@@ -26,57 +27,37 @@ export function SearchInput({ value, onChange, placeholder = 'Buscar projetos...
   }, []);
 
   return (
-    <div className="relative w-full group">
-      {/* Search Icon */}
-      <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-        <Search className="w-5 h-5 text-muted-foreground transition-colors duration-300 group-focus-within:text-primary" />
-      </div>
-
-      {/* Input Field */}
-      <input
-        ref={inputRef}
-        type="text"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder={placeholder}
-        className="w-full h-12 pl-12 pr-24 
-          bg-card/50 backdrop-blur-sm
-          border border-border/50
-          rounded-lg
-          text-foreground placeholder:text-muted-foreground/60
-          font-medium text-base
-          transition-all duration-300
-          focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50
-          hover:border-border
-          shadow-sm hover:shadow-md"
-        aria-label="Buscar projetos"
-      />
-
-      {/* Keyboard Shortcut Hint or Clear Button */}
-      <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-        {value ? (
+    <Input
+      ref={inputRef}
+      type="text"
+      value={value}
+      onValueChange={onChange}
+      placeholder={placeholder}
+      aria-label="Buscar projetos"
+      variant="bordered"
+      size="lg"
+      radius="lg"
+      startContent={<Search className="w-5 h-5 text-default-400" />}
+      endContent={
+        value ? (
           <button
             type="button"
             onClick={() => onChange('')}
-            className="p-1.5 rounded-md
-              bg-muted/50 hover:bg-muted
-              text-muted-foreground hover:text-foreground
-              transition-all duration-200
-              focus:outline-none focus:ring-2 focus:ring-primary/30"
+            className="focus:outline-none"
             aria-label="Limpar busca"
           >
-            <X className="w-4 h-4" />
+            <X className="w-4 h-4 text-default-400 hover:text-foreground" />
           </button>
         ) : (
-          <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-1 
-            text-xs font-mono font-semibold
-            bg-muted/50 text-muted-foreground
-            border border-border/50 rounded
-            shadow-sm">
-            <span className="text-xs">⌘</span>K
-          </kbd>
-        )}
-      </div>
-    </div>
+          <Kbd keys={["command"]} className="hidden sm:inline-flex">
+            K
+          </Kbd>
+        )
+      }
+      classNames={{
+        input: "font-medium",
+        inputWrapper: "bg-default-100/50 backdrop-blur-sm group-data-[focus=true]:bg-default-100"
+      }}
+    />
   );
 }

@@ -1,8 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Button, Card, CardBody, CardHeader, Chip, Link, Divider } from '@heroui/react';
 import { Github, Linkedin, Mail, ArrowDown } from 'lucide-react';
 
 export function AboutSection() {
@@ -32,12 +31,12 @@ export function AboutSection() {
                                     Lucas Silva
                                 </span>
                             </h1>
-                            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-muted-foreground">
+                            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-default-500">
                                 Frontend Developer & UI/UX Enthusiast
                             </h2>
                         </div>
 
-                        <p className="text-lg text-muted-foreground leading-relaxed">
+                        <p className="text-lg text-default-500 leading-relaxed">
                             Especializado em criar experiências web modernas e performáticas
                             usando React, Next.js e TypeScript. Apaixonado por design systems,
                             acessibilidade e código limpo.
@@ -46,59 +45,47 @@ export function AboutSection() {
                         {/* Social Links */}
                         <div className="flex flex-wrap gap-4">
                             <Button
-                                variant="default"
+                                variant="solid"
+                                color="primary"
                                 size="lg"
-                                asChild
-                                className="group"
+                                as={Link}
+                                href="https://github.com"
+                                isExternal
+                                startContent={<Github className="h-5 w-5" />}
                             >
-                                <a
-                                    href="https://github.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <Github className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                                    GitHub
-                                </a>
+                                GitHub
                             </Button>
                             <Button
-                                variant="outline"
+                                variant="bordered"
                                 size="lg"
-                                asChild
-                                className="group"
+                                as={Link}
+                                href="https://linkedin.com"
+                                isExternal
+                                startContent={<Linkedin className="h-5 w-5" />}
                             >
-                                <a
-                                    href="https://linkedin.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <Linkedin className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                                    LinkedIn
-                                </a>
+                                LinkedIn
                             </Button>
                             <Button
-                                variant="outline"
+                                variant="bordered"
                                 size="lg"
-                                asChild
-                                className="group"
+                                as={Link}
+                                href="mailto:contato@example.com"
+                                startContent={<Mail className="h-5 w-5" />}
                             >
-                                <a
-                                    href="mailto:contato@example.com"
-                                    rel="noopener noreferrer"
-                                >
-                                    <Mail className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                                    Email
-                                </a>
+                                Email
                             </Button>
                         </div>
                     </div>
 
                     {/* About Me Card */}
-                    <Card className="bg-card/50 backdrop-blur-sm border-border/50 shadow-lg">
-                        <CardContent className="p-8 space-y-6">
-                            <h3 className="text-2xl font-bold text-foreground">
+                    <Card shadow="lg" isBlurred>
+                        <CardHeader>
+                            <h3 className="text-2xl font-bold">
                                 Sobre Mim
                             </h3>
-                            <div className="space-y-4 text-muted-foreground">
+                        </CardHeader>
+                        <CardBody className="space-y-6">
+                            <div className="space-y-4 text-default-500">
                                 <p>
                                     Com mais de X anos de experiência no desenvolvimento web,
                                     tenho focado em criar interfaces intuitivas e acessíveis
@@ -109,39 +96,45 @@ export function AboutSection() {
                                     modernas de desenvolvimento, sempre buscando performance,
                                     escalabilidade e manutenibilidade do código.
                                 </p>
-                                <div className="pt-4 border-t border-border">
-                                    <h4 className="font-semibold text-foreground mb-3">
-                                        Skills Principais
-                                    </h4>
-                                    <div className="flex flex-wrap gap-2">
-                                        {[
-                                            'React',
-                                            'Next.js',
-                                            'TypeScript',
-                                            'Tailwind CSS',
-                                            'Node.js',
-                                            'shadcn/ui',
-                                        ].map((skill) => (
-                                            <span
-                                                key={skill}
-                                                className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
-                                            >
-                                                {skill}
-                                            </span>
-                                        ))}
-                                    </div>
+                            </div>
+                            
+                            <Divider />
+                            
+                            <div>
+                                <h4 className="font-semibold text-foreground mb-3">
+                                    Skills Principais
+                                </h4>
+                                <div className="flex flex-wrap gap-2">
+                                    {[
+                                        'React',
+                                        'Next.js',
+                                        'TypeScript',
+                                        'Tailwind CSS',
+                                        'Node.js',
+                                        'shadcn/ui',
+                                    ].map((skill) => (
+                                        <Chip
+                                            key={skill}
+                                            color="primary"
+                                            variant="flat"
+                                            size="md"
+                                        >
+                                            {skill}
+                                        </Chip>
+                                    ))}
                                 </div>
                             </div>
-                        </CardContent>
+                        </CardBody>
                     </Card>
                 </div>
 
                 {/* Scroll Indicator */}
                 <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
                     <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={scrollToProjects}
+                        variant="light"
+                        size="lg"
+                        isIconOnly
+                        onPress={scrollToProjects}
                         className="animate-bounce"
                         aria-label="Scroll to projects"
                     >

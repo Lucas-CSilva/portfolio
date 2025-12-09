@@ -1,9 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Card, CardBody, CardHeader, Input, Button } from '@heroui/react';
 import { Search, X } from 'lucide-react';
 import type { Project } from '@/lib/types';
 import { TechBadge } from '@/components/ui/TechBadge';
@@ -157,7 +155,7 @@ export function ProjectGallerySection({ projects }: ProjectGallerySectionProps) 
                         />
                         {hasActiveFilters && (
                             <div className="mt-6">
-                                <Button onClick={clearFilters} variant="outline">
+                                <Button onClick={clearFilters} variant="bordered">
                                     Limpar Filtros
                                 </Button>
                             </div>
@@ -171,14 +169,14 @@ export function ProjectGallerySection({ projects }: ProjectGallerySectionProps) 
                                 className="group hover:shadow-lg hover:border-primary/50 transition-all duration-300"
                             >
                                 <CardHeader>
-                                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                                    <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
                                         {project.title}
-                                    </CardTitle>
+                                    </h3>
                                     {project.context && (
-                                        <CardDescription>{project.context}</CardDescription>
+                                        <p className="text-sm text-muted-foreground">{project.context}</p>
                                     )}
                                 </CardHeader>
-                                <CardContent className="space-y-4">
+                                <CardBody className="space-y-4">
                                     <p className="text-sm text-muted-foreground line-clamp-3">
                                         {project.description}
                                     </p>
@@ -200,39 +198,33 @@ export function ProjectGallerySection({ projects }: ProjectGallerySectionProps) 
                                         <div className="flex gap-2 pt-2">
                                             {project.repoUrl && (
                                                 <Button
-                                                    variant="outline"
+                                                    variant="bordered"
                                                     size="sm"
-                                                    asChild
+                                                    as="a"
+                                                    href={project.repoUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
                                                     className="flex-1"
                                                 >
-                                                    <a
-                                                        href={project.repoUrl}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                    >
-                                                        Code
-                                                    </a>
+                                                    Code
                                                 </Button>
                                             )}
                                             {project.liveUrl && (
                                                 <Button
-                                                    variant="default"
+                                                    variant="solid"
                                                     size="sm"
-                                                    asChild
+                                                    as="a"
+                                                    href={project.liveUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
                                                     className="flex-1"
                                                 >
-                                                    <a
-                                                        href={project.liveUrl}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                    >
-                                                        Live
-                                                    </a>
+                                                    Live
                                                 </Button>
                                             )}
                                         </div>
                                     )}
-                                </CardContent>
+                                </CardBody>
                             </Card>
                         ))}
                     </div>

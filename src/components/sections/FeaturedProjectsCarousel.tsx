@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardBody, CardHeader } from '@heroui/react';
 import {
     Carousel,
     CarouselContent,
@@ -10,7 +10,7 @@ import {
     CarouselPrevious,
     type CarouselApi,
 } from '@/components/ui/carousel';
-import { Button } from '@/components/ui/button';
+import { Button } from '@heroui/react';
 import { ExternalLink } from 'lucide-react';
 import Autoplay from 'embla-carousel-autoplay';
 import type { Project } from '@/lib/types';
@@ -82,33 +82,31 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
                                         <CardHeader className="space-y-4">
                                             <div className="flex items-start justify-between">
                                                 <div className="space-y-2 flex-1">
-                                                    <CardTitle className="text-3xl">
+                                                    <h3 className="text-3xl font-semibold">
                                                         {project.title}
-                                                    </CardTitle>
-                                                    <CardDescription className="text-base">
+                                                    </h3>
+                                                    <p className="text-base text-muted-foreground">
                                                         {project.context}
-                                                    </CardDescription>
+                                                    </p>
                                                 </div>
                                                 {project.liveUrl && (
                                                     <Button
-                                                        variant="outline"
-                                                        size="icon"
-                                                        asChild
+                                                        variant="bordered"
+                                                        size="sm"
+                                                        isIconOnly
+                                                        as="a"
+                                                        href={project.liveUrl}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        aria-label={`View ${project.title} live`}
                                                         className="shrink-0 ml-4"
                                                     >
-                                                        <a
-                                                            href={project.liveUrl}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            aria-label={`View ${project.title} live`}
-                                                        >
-                                                            <ExternalLink className="h-5 w-5" />
-                                                        </a>
+                                                        <ExternalLink className="h-5 w-5" />
                                                     </Button>
                                                 )}
                                             </div>
                                         </CardHeader>
-                                        <CardContent className="space-y-6">
+                                        <CardBody className="space-y-6">
                                             <p className="text-lg text-muted-foreground leading-relaxed">
                                                 {project.description}
                                             </p>
@@ -133,38 +131,32 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
                                                 <div className="flex gap-3 pt-4 border-t border-border">
                                                     {project.repoUrl && (
                                                         <Button
-                                                            variant="outline"
-                                                            asChild
+                                                            variant="bordered"
+                                                            as="a"
+                                                            href={project.repoUrl}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
                                                             className="flex-1"
                                                         >
-                                                            <a
-                                                                href={project.repoUrl}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                            >
-                                                                View Code
-                                                            </a>
+                                                            View Code
                                                         </Button>
                                                     )}
                                                     {project.liveUrl && (
                                                         <Button
-                                                            variant="default"
-                                                            asChild
+                                                            variant="solid"
+                                                            as="a"
+                                                            href={project.liveUrl}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
                                                             className="flex-1"
                                                         >
-                                                            <a
-                                                                href={project.liveUrl}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                            >
-                                                                View Live
-                                                                <ExternalLink className="ml-2 h-4 w-4" />
-                                                            </a>
+                                                            View Live
+                                                            <ExternalLink className="ml-2 h-4 w-4" />
                                                         </Button>
                                                     )}
                                                 </div>
                                             )}
-                                        </CardContent>
+                                        </CardBody>
                                     </Card>
                                 </CarouselItem>
                             ))}

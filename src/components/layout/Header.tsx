@@ -1,16 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import Link from 'next/link';
-import {
-    NavigationMenu,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
-import { cn } from '@/lib/utils';
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link } from '@heroui/react';
 
 const navigation = [
     { name: 'About Me', href: '#about' },
@@ -45,68 +37,46 @@ export function Header() {
     };
 
     return (
-        <header
-            className={cn(
-                'sticky top-0 z-50 w-full transition-all duration-300',
-                isScrolled
-                    ? 'bg-background/80 backdrop-blur-lg border-b border-border shadow-sm'
-                    : 'bg-transparent'
-            )}
+        <Navbar 
+            isBlurred={isScrolled}
+            isBordered={isScrolled}
+            maxWidth="xl"
+            position="sticky"
+            classNames={{
+                base: 'transition-all duration-300',
+                wrapper: 'px-4 sm:px-6 lg:px-8',
+            }}
         >
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex h-16 items-center justify-between">
-                    {/* Logo/Brand */}
-                    <div className="flex-shrink-0">
+            <NavbarBrand>
+                <Link 
+                    href="/"
+                    color="foreground"
+                    className="font-bold text-xl"
+                >
+                    Portfolio
+                </Link>
+            </NavbarBrand>
+
+            <NavbarContent className="hidden md:flex gap-1" justify="center">
+                {navigation.map((item) => (
+                    <NavbarItem key={item.name}>
                         <Link
-                            href="/"
-                            className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+                            href={item.href}
+                            color="foreground"
+                            onPress={(e) => handleNavClick(e as any, item.href)}
+                            className="font-medium"
                         >
-                            Portfolio
+                            {item.name}
                         </Link>
-                    </div>
+                    </NavbarItem>
+                ))}
+            </NavbarContent>
 
-                    {/* Navigation Menu */}
-                    <NavigationMenu className="hidden md:flex">
-                        <NavigationMenuList>
-                            {navigation.map((item) => (
-                                <NavigationMenuItem key={item.name}>
-                                    <Link href={item.href} legacyBehavior passHref>
-                                        <NavigationMenuLink
-                                            className={navigationMenuTriggerStyle()}
-                                            onClick={(e) => handleNavClick(e, item.href)}
-                                        >
-                                            {item.name}
-                                        </NavigationMenuLink>
-                                    </Link>
-                                </NavigationMenuItem>
-                            ))}
-                        </NavigationMenuList>
-                    </NavigationMenu>
-
-                    {/* Theme Toggle */}
-                    <div className="flex items-center gap-4">
-                        <ThemeToggle />
-                    </div>
-                </div>
-            </div>
-
-            {/* Mobile Navigation */}
-            <nav className="md:hidden border-t border-border bg-background/95 backdrop-blur-lg">
-                <div className="container mx-auto px-4">
-                    <div className="flex items-center justify-around py-3">
-                        {navigation.map((item) => (
-                            <Link
-                                key={item.name}
-                                href={item.href}
-                                onClick={(e) => handleNavClick(e, item.href)}
-                                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                            >
-                                {item.name}
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            </nav>
-        </header>
+            <NavbarContent justify="end">
+                <NavbarItem>
+                    <ThemeToggle />
+                </NavbarItem>
+            </NavbarContent>
+        </Navbar>
     );
 }
