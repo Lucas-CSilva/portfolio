@@ -13,18 +13,21 @@ export function ProjectGallery({ projects }: ProjectGalleryProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto">
+    <div className={cn(
+      // Responsive grid: 1 col mobile → 2 col tablet → 3 col desktop → 4 col ultrawide
+      "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4",
+      "gap-6 lg:gap-8",
+      "mx-auto w-full"
+    )}>
       {projects.map((project, index) => (
         <div
           key={project.id}
           className={cn(
-            // REMOVIDO: opacity-0 (causava o problema de invisibilidade permanente)
-            // ADICIONADO: fill-mode-both (oculta durante o delay e mantém visível no final)
             "animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-both",
-            "h-full" 
+            "h-full"
           )}
           style={{
-            animationDelay: `${index * 100}ms`
+            animationDelay: `${index * 80}ms`
           }}
         >
           <div className="h-full transform transition-all hover:scale-[1.02]">
