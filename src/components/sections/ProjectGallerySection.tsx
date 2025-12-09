@@ -61,7 +61,7 @@ export function ProjectGallerySection({ projects }: ProjectGallerySectionProps) 
             id="gallery"
             className="py-32"
         >
-            <div className="container mx-auto max-w-6xl px-6 lg:px-8">
+            <div className="page-container">
                 {/* Header */}
                 <div className="space-y-3 text-center mb-16">
                     <p className="text-xs font-semibold uppercase tracking-wider text-accent-primary">

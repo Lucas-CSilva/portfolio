@@ -40,7 +40,7 @@ export function Header() {
         <Navbar 
             isBlurred={false}
             isBordered={isScrolled}
-            maxWidth="xl"
+            maxWidth="full"
             position="sticky"
             height="5rem"
             classNames={{
@@ -49,7 +49,7 @@ export function Header() {
                         ? 'bg-app-bg/80 backdrop-blur-xl backdrop-saturate-150 border-b border-divider/50' 
                         : 'bg-transparent'
                 }`,
-                wrapper: 'px-6 lg:px-8 max-w-7xl',
+                wrapper: 'page-container',
                 item: 'data-[active=true]:font-semibold',
             }}
         >

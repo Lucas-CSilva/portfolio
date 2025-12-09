@@ -52,7 +52,7 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
             id="featured"
             className="py-32 bg-default-50/30"
         >
-            <div className="container mx-auto max-w-6xl px-6 lg:px-8">
+            <div className="page-container">
                 <div className="space-y-3 text-center mb-16">
                     <p className="text-xs font-semibold uppercase tracking-wider text-accent-primary">
                         Portfolio Highlights

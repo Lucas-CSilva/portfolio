@@ -20,7 +20,7 @@ export function AboutSection() {
             id="about"
             className="relative min-h-screen flex items-center justify-center py-32"
         >
-            <div className="container mx-auto max-w-6xl px-6 lg:px-8">
+            <div className="page-container">
                 <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-16 items-center">
                     {/* Hero Content - Professional & Clean */}
                     <div className="space-y-12">
