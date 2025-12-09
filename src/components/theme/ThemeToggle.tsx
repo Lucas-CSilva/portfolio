@@ -3,7 +3,7 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { Sun, Moon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@heroui/react';
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -16,7 +16,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <Button variant="ghost" size="icon" disabled className="opacity-50">
+      <Button variant="ghost" size="sm" isIconOnly disabled className="opacity-50">
         <span className="sr-only">Carregando tema</span>
       </Button>
     );
@@ -27,13 +27,14 @@ export function ThemeToggle() {
   return (
     <Button
       variant="ghost"
-      size="icon"
+      size="sm" 
+      isIconOnly
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       aria-label={`Alternar para tema ${isDark ? 'claro' : 'escuro'}`}
-      className="rounded-full"
+      className="relative overflow-hidden"
     >
-      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      <Sun className="absolute inset-0 m-auto h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-[var(--nord3)]" />
+      <Moon className="absolute inset-0 m-auto h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-[var(--nord6)]" />
     </Button>
   );
 }

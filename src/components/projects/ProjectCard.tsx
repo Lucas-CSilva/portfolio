@@ -1,43 +1,46 @@
 import type { Project } from '@/lib/types';
 import { TechBadge } from '@/components/ui/TechBadge';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardBody, Link } from "@heroui/react";
 import { ArrowUpRight } from 'lucide-react';
 
 export function ProjectCard(project: Project) {
   return (
-    <Card className="group relative h-full flex flex-col overflow-hidden border border-border/50 bg-card/30 backdrop-blur-md transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1">
-      
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-      {/* Header com flex-grow-0 para não esticar, mas com espaçamento generoso */}
-      <CardHeader className="relative z-10 p-6 space-y-4">
-        <div className="flex justify-between items-start gap-4">
-          <CardTitle className="text-xl font-bold tracking-tight text-foreground leading-snug">
-            {project.title}
-          </CardTitle>
-          <ArrowUpRight className="w-5 h-5 flex-shrink-0 text-muted-foreground/50 transition-colors duration-300 group-hover:text-primary" />
-        </div>
-        
-        {/* Adicionando min-h para garantir alinhamento visual entre cards vizinhos */}
-        <CardDescription className="text-muted-foreground/90 leading-relaxed text-sm line-clamp-4">
-           {project.description}
-        </CardDescription>
-      </CardHeader>
-      
-      {/* Content empurrado para o final com mt-auto */}
-      <CardContent className="mt-auto p-6 pt-0 relative z-10">
-        <div className="flex flex-wrap gap-2">
-          {project.technologies.map((tech) => (
-            <TechBadge key={tech} technology={tech} />
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+    <Link
+      href={project.liveUrl || project.repoUrl || '#'}
+      isExternal={!!(project.liveUrl || project.repoUrl)}
+      className="group block h-full"
+    >
+      <Card 
+        shadow="none"
+        className="h-full border border-divider hover:border-accent-primary/30 bg-content1/50 backdrop-blur-sm transition-all duration-200"
+      >
+        <CardBody className="p-6 flex flex-col gap-6">
+          {/* Header */}
+          <div className="flex justify-between items-start gap-4">
+            <div className="flex-1 min-w-0">
+              <h3 className="text-lg font-semibold tracking-tight text-foreground group-hover:text-accent-primary transition-colors mb-2">
+                {project.title}
+              </h3>
+              <p className="text-sm text-default-500 leading-relaxed line-clamp-3">
+                {project.description}
+              </p>
+            </div>
+            <ArrowUpRight className="w-4 h-4 flex-shrink-0 text-default-400 group-hover:text-accent-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+          </div>
+          
+          {/* Technologies */}
+          <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-divider">
+            {project.technologies.slice(0, 4).map((tech) => (
+              <TechBadge key={tech} technology={tech} />
+            ))}
+            {project.technologies.length > 4 && (
+              <span className="text-xs text-default-400 self-center">
+                +{project.technologies.length - 4}
+              </span>
+            )}
+          </div>
+        </CardBody>
+      </Card>
+    </Link>
   );
 }

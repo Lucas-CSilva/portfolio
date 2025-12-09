@@ -1,8 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Button, Card, CardBody, Chip, Link, Divider } from '@heroui/react';
 import { Github, Linkedin, Mail, ArrowDown } from 'lucide-react';
 
 export function AboutSection() {
@@ -19,133 +18,137 @@ export function AboutSection() {
     return (
         <section
             id="about"
-            className="relative min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8"
+            className="relative min-h-screen flex items-center justify-center py-32"
         >
-            <div className="container mx-auto max-w-6xl">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    {/* Hero Content */}
-                    <div className="space-y-8">
-                        <div className="space-y-4">
-                            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground leading-tight">
-                                Olá, sou{' '}
-                                <span className="text-primary">
+            <div className="page-container">
+                <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-16 items-center">
+                    {/* Hero Content - Professional & Clean */}
+                    <div className="space-y-12">
+                        <div className="space-y-6">
+                            <div className="space-y-2">
+                                <p className="text-sm font-medium tracking-wide uppercase text-accent-primary">
+                                    Backend Developer
+                                </p>
+                                <h1 className="text-5xl lg:text-6xl font-semibold text-foreground tracking-tight">
                                     Lucas Silva
-                                </span>
-                            </h1>
-                            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-muted-foreground">
-                                Frontend Developer & UI/UX Enthusiast
+                                </h1>
+                            </div>
+                            <h2 className="text-2xl lg:text-3xl font-normal text-default-600 leading-relaxed max-w-xl">
+                                Construindo sistemas robustos e escaláveis com foco em performance e qualidade
                             </h2>
                         </div>
 
-                        <p className="text-lg text-muted-foreground leading-relaxed">
-                            Especializado em criar experiências web modernas e performáticas
-                            usando React, Next.js e TypeScript. Apaixonado por design systems,
-                            acessibilidade e código limpo.
+                        <p className="text-base text-default-500 leading-relaxed max-w-xl">
+                            Desenvolvedor backend especializado em criar arquiteturas escaláveis e sistemas distribuídos. 
+                            Formado em Ciência da Computação pela UNESP, com foco em APIs robustas, performance e soluções de nível empresarial.
                         </p>
 
-                        {/* Social Links */}
-                        <div className="flex flex-wrap gap-4">
+                        {/* Social Links - Minimal & Professional */}
+                        <div className="flex flex-wrap gap-3">
                             <Button
-                                variant="default"
-                                size="lg"
-                                asChild
-                                className="group"
+                                variant="bordered"
+                                size="md"
+                                as={Link}
+                                href="https://github.com"
+                                isExternal
+                                startContent={<Github className="h-4 w-4" />}
+                                className="font-medium"
                             >
-                                <a
-                                    href="https://github.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <Github className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                                    GitHub
-                                </a>
+                                GitHub
                             </Button>
                             <Button
-                                variant="outline"
-                                size="lg"
-                                asChild
-                                className="group"
+                                variant="bordered"
+                                size="md"
+                                as={Link}
+                                href="https://linkedin.com"
+                                isExternal
+                                startContent={<Linkedin className="h-4 w-4" />}
+                                className="font-medium"
                             >
-                                <a
-                                    href="https://linkedin.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <Linkedin className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                                    LinkedIn
-                                </a>
+                                LinkedIn
                             </Button>
                             <Button
-                                variant="outline"
-                                size="lg"
-                                asChild
-                                className="group"
+                                variant="bordered"
+                                size="md"
+                                as={Link}
+                                href="mailto:contato@example.com"
+                                startContent={<Mail className="h-4 w-4" />}
+                                className="font-medium"
                             >
-                                <a
-                                    href="mailto:contato@example.com"
-                                    rel="noopener noreferrer"
-                                >
-                                    <Mail className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                                    Email
-                                </a>
+                                Contact
                             </Button>
                         </div>
                     </div>
 
-                    {/* About Me Card */}
-                    <Card className="bg-card/50 backdrop-blur-sm border-border/50 shadow-lg">
-                        <CardContent className="p-8 space-y-6">
-                            <h3 className="text-2xl font-bold text-foreground">
-                                Sobre Mim
-                            </h3>
-                            <div className="space-y-4 text-muted-foreground">
-                                <p>
-                                    Com mais de X anos de experiência no desenvolvimento web,
-                                    tenho focado em criar interfaces intuitivas e acessíveis
-                                    que proporcionam experiências excepcionais aos usuários.
-                                </p>
-                                <p>
-                                    Minha abordagem combina design thinking com práticas
-                                    modernas de desenvolvimento, sempre buscando performance,
-                                    escalabilidade e manutenibilidade do código.
-                                </p>
-                                <div className="pt-4 border-t border-border">
-                                    <h4 className="font-semibold text-foreground mb-3">
-                                        Skills Principais
-                                    </h4>
-                                    <div className="flex flex-wrap gap-2">
-                                        {[
-                                            'React',
-                                            'Next.js',
-                                            'TypeScript',
-                                            'Tailwind CSS',
-                                            'Node.js',
-                                            'shadcn/ui',
-                                        ].map((skill) => (
-                                            <span
-                                                key={skill}
-                                                className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
-                                            >
-                                                {skill}
-                                            </span>
-                                        ))}
-                                    </div>
+                    {/* About Card - Premium Enterprise Style */}
+                    <Card 
+                        shadow="none"
+                        className="border border-divider bg-content1/50 backdrop-blur-sm"
+                    >
+                        <CardBody className="p-8 space-y-8">
+                            <div className="space-y-4">
+                                <h3 className="text-xl font-semibold tracking-tight">
+                                    Formação e Experiência
+                                </h3>
+                                <div className="space-y-4 text-sm text-default-600 leading-relaxed">
+                                    <p>
+                                        Desenvolvedor backend com sólida formação em Ciência da Computação pela UNESP, 
+                                        com experiência em construir aplicações backend de alta qualidade para diversas indústrias.
+                                    </p>
+                                    <p>
+                                        Minha abordagem combina excelência técnica com boas práticas de engenharia de software, 
+                                        garantindo soluções que são performáticas, seguras e escaláveis.
+                                    </p>
                                 </div>
                             </div>
-                        </CardContent>
+                            
+                            <Divider />
+                            
+                            <div className="space-y-4">
+                                <h4 className="text-xs font-semibold uppercase tracking-wider text-default-500">
+                                    Tecnologias Principais
+                                </h4>
+                                <div className="flex flex-wrap gap-2">
+                                    {[
+                                        'Java',
+                                        'Spring Boot',
+                                        'WebFlux',
+                                        'C#',
+                                        '.NET',
+                                        'Python',
+                                        'FastAPI',
+                                        'MongoDB',
+                                        'MS SQL',
+                                    ].map((skill) => (
+                                        <Chip
+                                            key={skill}
+                                            variant="flat"
+                                            size="sm"
+                                            classNames={{
+                                                base: 'bg-default-100 border border-divider',
+                                                content: 'text-default-700 font-medium text-xs',
+                                            }}
+                                        >
+                                            {skill}
+                                        </Chip>
+                                    ))}
+                                </div>
+                            </div>
+                        </CardBody>
                     </Card>
                 </div>
 
-                {/* Scroll Indicator */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+                {/* Scroll Indicator - Subtle */}
+                <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
                     <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={scrollToProjects}
-                        className="animate-bounce"
+                        variant="light"
+                        size="sm"
+                        isIconOnly
+                        onPress={scrollToProjects}
+                        className="text-default-400 hover:text-default-600 animate-bounce"
                         aria-label="Scroll to projects"
                     >
-                        <ArrowDown className="h-6 w-6" />
+                        <ArrowDown className="h-5 w-5" />
                     </Button>
                 </div>
             </div>

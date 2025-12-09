@@ -2,7 +2,7 @@
 
 import type { Technology, Category } from '@/lib/types';
 import { useProjectFilter } from '@/lib/hooks/useProjectFilter';
-import { Button } from '@/components/ui/button';
+import { Button, Divider, ButtonGroup, Chip } from '@heroui/react';
 import { SearchInput } from './SearchInput';
 import { ResultsCounter } from './ResultsCounter';
 import { X, SlidersHorizontal } from 'lucide-react';
@@ -51,12 +51,11 @@ export function FilterControls({
           <ResultsCounter showing={filteredCount} total={totalProjects} />
           
           <Button
-            variant="outline"
+            variant="bordered"
             size="sm"
-            onClick={() => setShowFilters(!showFilters)}
-            className="gap-2"
+            startContent={<SlidersHorizontal className="w-4 h-4" />}
+            onPress={() => setShowFilters(!showFilters)}
           >
-            <SlidersHorizontal className="w-4 h-4" />
             {showFilters ? 'Ocultar' : 'Mostrar'} Filtros
           </Button>
         </div>
@@ -72,20 +71,23 @@ export function FilterControls({
           
           {/* Active Filters Bar with Clear All */}
           {hasActiveFilters && (
-            <div className="flex items-center gap-2 pb-2 border-b border-border/50">
-              <span className="text-sm font-medium text-muted-foreground">
-                Filtros ativos:
-              </span>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={clearAllFilters}
-                className="gap-2 text-destructive hover:text-destructive hover:bg-destructive/10"
-              >
-                <X className="w-4 h-4" />
-                Limpar Todos
-              </Button>
-            </div>
+            <>
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium text-default-500">
+                  Filtros ativos:
+                </span>
+                <Button
+                  variant="light"
+                  size="sm"
+                  color="danger"
+                  startContent={<X className="w-4 h-4" />}
+                  onPress={clearAllFilters}
+                >
+                  Limpar Todos
+                </Button>
+              </div>
+              <Divider />
+            </>
           )}
 
           {/* Technology Filters */}
@@ -96,12 +98,11 @@ export function FilterControls({
               </h3>
               {activeTech && (
                 <Button
-                  variant="ghost"
+                  variant="light"
                   size="sm"
-                  onClick={() => setTechFilter(null)}
-                  className="h-7 text-xs gap-1.5 text-muted-foreground hover:text-foreground"
+                  startContent={<X className="w-3 h-3" />}
+                  onPress={() => setTechFilter(null)}
                 >
-                  <X className="w-3 h-3" />
                   Limpar
                 </Button>
               )}
@@ -113,28 +114,25 @@ export function FilterControls({
                 return (
                   <Button
                     key={tech.slug}
-                    variant={isActive ? "default" : "outline"}
+                    variant={isActive ? "solid" : "bordered"}
+                    color={isActive ? "primary" : "default"}
                     size="sm"
-                    onClick={() => setTechFilter(tech.slug)}
-                    className={`
-                      group relative transition-all duration-200
-                      ${isActive 
-                        ? 'shadow-lg shadow-primary/20 scale-105' 
-                        : 'hover:scale-105 hover:border-primary/30'
-                      }
-                    `}
+                    onPress={() => setTechFilter(tech.slug)}
+                    endContent={
+                      <Chip
+                        size="sm"
+                        variant="flat"
+                        color={isActive ? "primary" : "default"}
+                        classNames={{
+                          base: "h-5 min-w-5 px-1",
+                          content: "text-xs font-mono font-bold px-1"
+                        }}
+                      >
+                        {tech.count}
+                      </Chip>
+                    }
                   >
                     {tech.name}
-                    <span className={`
-                      ml-2 text-xs py-0.5 px-1.5 rounded-full font-mono font-bold
-                      transition-colors duration-200
-                      ${isActive 
-                        ? 'bg-primary-foreground/20 text-primary-foreground' 
-                        : 'bg-muted text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
-                      }
-                    `}>
-                      {tech.count}
-                    </span>
                   </Button>
                 );
               })}
@@ -150,12 +148,11 @@ export function FilterControls({
                 </h3>
                 {activeCategory && (
                   <Button
-                    variant="ghost"
+                    variant="light"
                     size="sm"
-                    onClick={() => setCategoryFilter(null)}
-                    className="h-7 text-xs gap-1.5 text-muted-foreground hover:text-foreground"
+                    startContent={<X className="w-3 h-3" />}
+                    onPress={() => setCategoryFilter(null)}
                   >
-                    <X className="w-3 h-3" />
                     Limpar
                   </Button>
                 )}
@@ -167,28 +164,25 @@ export function FilterControls({
                   return (
                     <Button
                       key={category.slug}
-                      variant={isActive ? "secondary" : "outline"}
+                      variant={isActive ? "flat" : "bordered"}
+                      color={isActive ? "secondary" : "default"}
                       size="sm"
-                      onClick={() => setCategoryFilter(category.slug)}
-                      className={`
-                        group relative transition-all duration-200
-                        ${isActive 
-                          ? 'shadow-md shadow-secondary/20 scale-105' 
-                          : 'hover:scale-105 hover:border-secondary/30'
-                        }
-                      `}
+                      onPress={() => setCategoryFilter(category.slug)}
+                      endContent={
+                        <Chip
+                          size="sm"
+                          variant="flat"
+                          color={isActive ? "secondary" : "default"}
+                          classNames={{
+                            base: "h-5 min-w-5 px-1",
+                            content: "text-xs font-mono font-bold px-1"
+                          }}
+                        >
+                          {category.count}
+                        </Chip>
+                      }
                     >
                       {category.name}
-                      <span className={`
-                        ml-2 text-xs py-0.5 px-1.5 rounded-full font-mono font-bold
-                        transition-colors duration-200
-                        ${isActive 
-                          ? 'bg-secondary-foreground/20 text-secondary-foreground' 
-                          : 'bg-muted text-muted-foreground group-hover:bg-secondary/10 group-hover:text-secondary'
-                        }
-                      `}>
-                        {category.count}
-                      </span>
                     </Button>
                   );
                 })}
