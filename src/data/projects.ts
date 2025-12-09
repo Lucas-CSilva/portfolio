@@ -10,6 +10,7 @@ export const projects: Project[] = [
         title: 'E-Commerce Platform',
         description: 'A modern e-commerce solution built with Next.js and Stripe. Features include product catalog, shopping cart, and secure checkout with real-time inventory management.',
         technologies: ['Next.js', 'TypeScript', 'Stripe', 'Tailwind CSS'],
+        context: 'E-commerce',
         order: 1,
         featured: true,
     },
@@ -18,6 +19,7 @@ export const projects: Project[] = [
         title: 'Task Management App',
         description: 'Collaborative task management application with real-time updates. Supports team workspaces, drag-and-drop prioritization, and deadline tracking.',
         technologies: ['React', 'TypeScript', 'Firebase', 'Material UI'],
+        context: 'Productivity',
         order: 2,
         featured: true,
     },
@@ -26,6 +28,7 @@ export const projects: Project[] = [
         title: 'Weather Dashboard',
         description: 'Interactive weather dashboard displaying current conditions and forecasts. Includes location-based weather, hourly predictions, and weather alerts.',
         technologies: ['React', 'TypeScript', 'OpenWeather API', 'Recharts'],
+        context: 'Data Visualization',
         order: 3,
     },
     {
@@ -33,6 +36,7 @@ export const projects: Project[] = [
         title: 'Headless Blog CMS',
         description: 'Headless content management system for blogs with markdown support. Features rich text editing, image optimization, and SEO meta management.',
         technologies: ['Next.js', 'TypeScript', 'MDX', 'Contentful'],
+        context: 'Content Management',
         order: 4,
     },
     {
@@ -40,6 +44,7 @@ export const projects: Project[] = [
         title: 'Portfolio Generator',
         description: 'CLI tool to generate static portfolio sites from JSON configuration. Supports multiple themes, automatic image optimization, and GitHub Pages deployment.',
         technologies: ['Node.js', 'TypeScript', 'Commander', 'Sharp'],
+        context: 'Developer Tools',
         order: 5,
     },
     {
@@ -47,6 +52,7 @@ export const projects: Project[] = [
         title: 'API Documentation Tool',
         description: 'Interactive API documentation generator with live testing playground. Auto-generates docs from OpenAPI specs with code examples in multiple languages.',
         technologies: ['React', 'TypeScript', 'OpenAPI', 'Monaco Editor'],
+        context: 'Documentation',
         order: 6,
     },
     {
@@ -54,6 +60,7 @@ export const projects: Project[] = [
         title: 'Data Visualization Dashboard',
         description: 'Real-time data visualization dashboard for analytics. Includes customizable charts, data filtering, export functionality, and responsive design.',
         technologies: ['React', 'TypeScript', 'D3.js', 'Tailwind CSS'],
+        context: 'Data Visualization',
         order: 7,
     },
     {
@@ -61,6 +68,7 @@ export const projects: Project[] = [
         title: 'Real-Time Chat Application',
         description: 'WebSocket-based chat application with group channels and direct messaging. Features include emoji reactions, file sharing, and message search.',
         technologies: ['React', 'TypeScript', 'Socket.io', 'Express'],
+        context: 'Communication',
         order: 8,
     },
 ];
