@@ -1,8 +1,5 @@
 import type { Project, Category } from './types';
 
-/**
- * Filter projects by multiple criteria: search text, technology slug, and category slug
- */
 export function filterProjects(
     projects: Project[],
     filters: {
@@ -13,7 +10,6 @@ export function filterProjects(
 ): Project[] {
     let filtered = projects;
 
-    // Filter by search text (case-insensitive, searches title and description)
     if (filters.search && filters.search.trim()) {
         const searchLower = filters.search.toLowerCase().trim();
         filtered = filtered.filter(
@@ -24,7 +20,6 @@ export function filterProjects(
         );
     }
 
-    // Filter by technology slug
     if (filters.technology) {
         filtered = filtered.filter((project) =>
             project.technologies.some(
@@ -33,7 +28,6 @@ export function filterProjects(
         );
     }
 
-    // Filter by category slug
     if (filters.category && filters.category !== 'all') {
         filtered = filtered.filter((project) => {
             if (!project.context) return false;
@@ -45,9 +39,6 @@ export function filterProjects(
     return filtered;
 }
 
-/**
- * Extract unique categories from projects with counts
- */
 export function getCategories(projects: Project[]): Category[] {
     const categoryMap = new Map<string, number>();
 
@@ -63,5 +54,5 @@ export function getCategories(projects: Project[]): Category[] {
             count,
             slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
         }))
-        .sort((a, b) => b.count - a.count); // Sort by count descending
+        .sort((a, b) => b.count - a.count);
 }

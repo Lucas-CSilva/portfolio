@@ -1,7 +1,6 @@
 'use client';
 
-import * as React from 'react';
-import { Button, Card, CardBody, Chip, Link, Divider } from '@heroui/react';
+import { Button, Card, CardContent, Chip, Link, Divider, Box, Typography, IconButton } from '@mui/material';
 import { Github, Linkedin, Mail, ArrowDown } from 'lucide-react';
 
 export function AboutSection() {
@@ -16,99 +15,139 @@ export function AboutSection() {
     };
 
     return (
-        <section
+        <Box
+            component="section"
             id="about"
-            className="relative min-h-screen flex items-center justify-center py-32"
+            sx={{
+                position: 'relative',
+                minHeight: '100vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                py: 16,
+            }}
         >
-            <div className="page-container">
-                <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-16 items-center">
-                    {/* Hero Content - Professional & Clean */}
-                    <div className="space-y-12">
-                        <div className="space-y-6">
-                            <div className="space-y-2">
-                                <p className="text-sm font-medium tracking-wide uppercase text-accent-primary">
+            <Box className="page-container">
+                <Box
+                    sx={{
+                        display: 'grid',
+                        gridTemplateColumns: { xs: '1fr', lg: '1.2fr 0.8fr' },
+                        gap: 8,
+                        alignItems: 'center',
+                    }}
+                >
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                                <Typography
+                                    variant="overline"
+                                    sx={{ fontWeight: 500, letterSpacing: '0.08em' }}
+                                    className="text-[var(--accent-primary)]"
+                                >
                                     Backend Developer
-                                </p>
-                                <h1 className="text-5xl lg:text-6xl font-semibold text-foreground tracking-tight">
+                                </Typography>
+                                <Typography
+                                    variant="h2"
+                                    sx={{ fontSize: { xs: '3rem', lg: '3.75rem' }, fontWeight: 600, letterSpacing: '-0.02em' }}
+                                    className="text-[var(--text-primary)]"
+                                >
                                     Lucas Silva
-                                </h1>
-                            </div>
-                            <h2 className="text-2xl lg:text-3xl font-normal text-default-600 leading-relaxed max-w-xl">
+                                </Typography>
+                            </Box>
+                            <Typography
+                                variant="h4"
+                                sx={{
+                                    fontSize: { xs: '1.5rem', lg: '1.875rem' },
+                                    fontWeight: 400,
+                                    lineHeight: 1.6,
+                                    maxWidth: 672,
+                                }}
+                                className="text-[var(--text-secondary)]"
+                            >
                                 Construindo sistemas robustos e escaláveis com foco em performance e qualidade
-                            </h2>
-                        </div>
+                            </Typography>
+                        </Box>
 
-                        <p className="text-base text-default-500 leading-relaxed max-w-xl">
-                            Desenvolvedor backend especializado em criar arquiteturas escaláveis e sistemas distribuídos. 
+                        <Typography
+                            variant="body1"
+                            sx={{ lineHeight: 1.6, maxWidth: 672 }}
+                            className="text-[var(--text-secondary)]"
+                        >
+                            Desenvolvedor backend especializado em criar arquiteturas escaláveis e sistemas distribuídos.
                             Formado em Ciência da Computação pela UNESP, com foco em APIs robustas, performance e soluções de nível empresarial.
-                        </p>
+                        </Typography>
 
-                        {/* Social Links - Minimal & Professional */}
-                        <div className="flex flex-wrap gap-3">
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
                             <Button
-                                variant="bordered"
-                                size="md"
-                                as={Link}
+                                variant="outlined"
+                                size="medium"
+                                component={Link}
                                 href="https://github.com"
-                                isExternal
-                                startContent={<Github className="h-4 w-4" />}
-                                className="font-medium"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                startIcon={<Github className="h-4 w-4" />}
+                                sx={{ fontWeight: 500 }}
                             >
                                 GitHub
                             </Button>
                             <Button
-                                variant="bordered"
-                                size="md"
-                                as={Link}
+                                variant="outlined"
+                                size="medium"
+                                component={Link}
                                 href="https://linkedin.com"
-                                isExternal
-                                startContent={<Linkedin className="h-4 w-4" />}
-                                className="font-medium"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                startIcon={<Linkedin className="h-4 w-4" />}
+                                sx={{ fontWeight: 500 }}
                             >
                                 LinkedIn
                             </Button>
                             <Button
-                                variant="bordered"
-                                size="md"
-                                as={Link}
+                                variant="outlined"
+                                size="medium"
+                                component={Link}
                                 href="mailto:contato@example.com"
-                                startContent={<Mail className="h-4 w-4" />}
-                                className="font-medium"
+                                startIcon={<Mail className="h-4 w-4" />}
+                                sx={{ fontWeight: 500 }}
                             >
                                 Contact
                             </Button>
-                        </div>
-                    </div>
+                        </Box>
+                    </Box>
 
-                    {/* About Card - Premium Enterprise Style */}
-                    <Card 
-                        shadow="none"
-                        className="border border-divider bg-content1/50 backdrop-blur-sm"
+                    <Card
+                        elevation={0}
+                        sx={{ border: '1px solid', backdropFilter: 'blur(8px)' }}
+                        className="border-[var(--border-default)] bg-[var(--bg-surface)]/50"
                     >
-                        <CardBody className="p-8 space-y-8">
-                            <div className="space-y-4">
-                                <h3 className="text-xl font-semibold tracking-tight">
+                        <CardContent sx={{ p: 4, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                                <Typography variant="h6" sx={{ fontWeight: 600, letterSpacing: '-0.02em' }}>
                                     Formação e Experiência
-                                </h3>
-                                <div className="space-y-4 text-sm text-default-600 leading-relaxed">
-                                    <p>
-                                        Desenvolvedor backend com sólida formação em Ciência da Computação pela UNESP, 
+                                </Typography>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                                    <Typography variant="body2" className="text-[var(--text-secondary)]" sx={{ lineHeight: 1.6 }}>
+                                        Desenvolvedor backend com sólida formação em Ciência da Computação pela UNESP,
                                         com experiência em construir aplicações backend de alta qualidade para diversas indústrias.
-                                    </p>
-                                    <p>
-                                        Minha abordagem combina excelência técnica com boas práticas de engenharia de software, 
+                                    </Typography>
+                                    <Typography variant="body2" className="text-[var(--text-secondary)]" sx={{ lineHeight: 1.6 }}>
+                                        Minha abordagem combina excelência técnica com boas práticas de engenharia de software,
                                         garantindo soluções que são performáticas, seguras e escaláveis.
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <Divider />
-                            
-                            <div className="space-y-4">
-                                <h4 className="text-xs font-semibold uppercase tracking-wider text-default-500">
+                                    </Typography>
+                                </Box>
+                            </Box>
+
+                            <Divider className="border-[var(--border-default)]" />
+
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                                <Typography
+                                    variant="overline"
+                                    sx={{ fontWeight: 600, letterSpacing: '0.08em' }}
+                                    className="text-[var(--text-secondary)]"
+                                >
                                     Tecnologias Principais
-                                </h4>
-                                <div className="flex flex-wrap gap-2">
+                                </Typography>
+                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                                     {[
                                         'Java',
                                         'Spring Boot',
@@ -122,36 +161,38 @@ export function AboutSection() {
                                     ].map((skill) => (
                                         <Chip
                                             key={skill}
-                                            variant="flat"
-                                            size="sm"
-                                            classNames={{
-                                                base: 'bg-default-100 border border-divider',
-                                                content: 'text-default-700 font-medium text-xs',
-                                            }}
-                                        >
-                                            {skill}
-                                        </Chip>
+                                            label={skill}
+                                            variant="outlined"
+                                            size="small"
+                                            sx={{ fontWeight: 500, fontSize: '0.75rem', borderRadius: '0.5rem' }}
+                                            className="bg-[var(--bg-elevated)] border-[var(--border-default)] text-[var(--text-secondary)]"
+                                        />
                                     ))}
-                                </div>
-                            </div>
-                        </CardBody>
+                                </Box>
+                            </Box>
+                        </CardContent>
                     </Card>
-                </div>
+                </Box>
 
                 {/* Scroll Indicator - Subtle */}
-                <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
-                    <Button
-                        variant="light"
-                        size="sm"
-                        isIconOnly
-                        onPress={scrollToProjects}
-                        className="text-default-400 hover:text-default-600 animate-bounce"
+                <Box sx={{ position: 'absolute', bottom: 48, left: '50%', transform: 'translateX(-50%)' }}>
+                    <IconButton
+                        size="small"
+                        onClick={scrollToProjects}
+                        sx={{
+                            animation: 'bounce 2s infinite',
+                            '@keyframes bounce': {
+                                '0%, 100%': { transform: 'translateY(0)' },
+                                '50%': { transform: 'translateY(-8px)' },
+                            },
+                        }}
+                        className="text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
                         aria-label="Scroll to projects"
                     >
                         <ArrowDown className="h-5 w-5" />
-                    </Button>
-                </div>
-            </div>
-        </section>
+                    </IconButton>
+                </Box>
+            </Box>
+        </Box>
     );
 }

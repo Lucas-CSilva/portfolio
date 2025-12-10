@@ -1,8 +1,9 @@
 'use client';
 
 import * as React from 'react';
+import { AppBar, Toolbar, Box, Link as MuiLink, Container } from '@mui/material';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link } from '@heroui/react';
+import { cn } from '@/lib/utils';
 
 const navigation = [
     { name: 'About', href: '#about' },
@@ -37,54 +38,79 @@ export function Header() {
     };
 
     return (
-        <Navbar 
-            isBlurred={false}
-            isBordered={isScrolled}
-            maxWidth="full"
+        <AppBar
             position="sticky"
-            height="5rem"
-            classNames={{
-                base: `transition-all duration-200 ${
-                    isScrolled 
-                        ? 'bg-app-bg/80 backdrop-blur-xl backdrop-saturate-150 border-b border-divider/50' 
-                        : 'bg-transparent'
-                }`,
-                wrapper: 'page-container',
-                item: 'data-[active=true]:font-semibold',
+            elevation={0}
+            sx={{
+                transition: 'all 0.2s',
+                backdropFilter: isScrolled ? 'blur(20px) saturate(150%)' : 'none',
+                borderBottom: isScrolled ? '1px solid' : 'none',
             }}
+            className={cn(
+                isScrolled
+                    ? 'bg-[var(--bg-app)]/80 border-[var(--border-default)]/50'
+                    : 'bg-transparent border-transparent'
+            )}
         >
-            <NavbarBrand>
-                <Link 
-                    href="/"
-                    color="foreground"
-                    className="font-semibold text-lg tracking-tight hover:opacity-70 transition-opacity"
-                    underline="none"
+            <Container maxWidth={false} className="page-container">
+                <Toolbar
+                    sx={{
+                        minHeight: '5rem',
+                        px: 0,
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                    }}
                 >
-                    Lucas Silva
-                </Link>
-            </NavbarBrand>
+                    {/* Brand */}
+                    <MuiLink
+                        href="/"
+                        underline="none"
+                        sx={{
+                            fontWeight: 600,
+                            fontSize: '1.125rem',
+                            letterSpacing: '-0.02em',
+                            transition: 'opacity 0.2s',
+                            '&:hover': { opacity: 0.7 },
+                        }}
+                        className="text-[var(--text-primary)]"
+                    >
+                        Lucas Silva
+                    </MuiLink>
 
-            <NavbarContent className="hidden md:flex gap-8" justify="center">
-                {navigation.map((item) => (
-                    <NavbarItem key={item.name}>
-                        <Link
-                            href={item.href}
-                            color="foreground"
-                            onPress={(e) => handleNavClick(e as any, item.href)}
-                            className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
-                            underline="none"
-                        >
-                            {item.name}
-                        </Link>
-                    </NavbarItem>
-                ))}
-            </NavbarContent>
+                    {/* Navigation */}
+                    <Box
+                        sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            gap: 4,
+                            position: 'absolute',
+                            left: '50%',
+                            transform: 'translateX(-50%)',
+                        }}
+                    >
+                        {navigation.map((item) => (
+                            <MuiLink
+                                key={item.name}
+                                href={item.href}
+                                onClick={(e) => handleNavClick(e, item.href)}
+                                underline="none"
+                                sx={{
+                                    fontSize: '0.875rem',
+                                    fontWeight: 500,
+                                    transition: 'color 0.2s',
+                                }}
+                                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                            >
+                                {item.name}
+                            </MuiLink>
+                        ))}
+                    </Box>
 
-            <NavbarContent justify="end">
-                <NavbarItem>
-                    <ThemeToggle />
-                </NavbarItem>
-            </NavbarContent>
-        </Navbar>
+                    {/* Theme Toggle */}
+                    <Box>
+                        <ThemeToggle />
+                    </Box>
+                </Toolbar>
+            </Container>
+        </AppBar>
     );
 }

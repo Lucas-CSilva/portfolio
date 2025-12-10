@@ -2,7 +2,7 @@
 
 import type { Technology, Category } from '@/lib/types';
 import { useProjectFilter } from '@/lib/hooks/useProjectFilter';
-import { Button, Divider, ButtonGroup, Chip } from '@heroui/react';
+import { Button, Divider, Box, Chip, Typography } from '@mui/material';
 import { SearchInput } from './SearchInput';
 import { ResultsCounter } from './ResultsCounter';
 import { X, SlidersHorizontal } from 'lucide-react';
@@ -36,161 +36,187 @@ export function FilterControls({
   const [showFilters, setShowFilters] = useState(true);
 
   return (
-    <div className="space-y-6">
-      {/* Search Bar and Results Counter Row */}
-      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-        <div className="w-full sm:flex-1 max-w-2xl">
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          gap: 2,
+          alignItems: { xs: 'flex-start', sm: 'center' },
+          justifyContent: 'space-between',
+        }}
+      >
+        <Box sx={{ width: { xs: '100%', sm: 'auto' }, flex: 1, maxWidth: 896 }}>
           <SearchInput 
             value={search} 
             onChange={setSearch}
             placeholder="Buscar por nome ou palavra-chave..."
           />
-        </div>
+        </Box>
         
-        <div className="flex items-center gap-3 flex-wrap">
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }}>
           <ResultsCounter showing={filteredCount} total={totalProjects} />
           
           <Button
-            variant="bordered"
-            size="sm"
-            startContent={<SlidersHorizontal className="w-4 h-4" />}
-            onPress={() => setShowFilters(!showFilters)}
+            variant="outlined"
+            size="small"
+            startIcon={<SlidersHorizontal className="w-4 h-4" />}
+            onClick={() => setShowFilters(!showFilters)}
           >
             {showFilters ? 'Ocultar' : 'Mostrar'} Filtros
           </Button>
-        </div>
-      </div>
+        </Box>
+      </Box>
 
-      {/* Filter Panels */}
       {showFilters && (
-        <div className={`
-          space-y-6 
-          animate-in fade-in slide-in-from-top-4 duration-300
-          ${isPending ? 'opacity-50 pointer-events-none' : ''}
-        `}>
-          
-          {/* Active Filters Bar with Clear All */}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 3,
+            opacity: isPending ? 0.5 : 1,
+            pointerEvents: isPending ? 'none' : 'auto',
+            animation: 'fadeIn 0.3s ease-in-out',
+            '@keyframes fadeIn': {
+              from: { opacity: 0, transform: 'translateY(-8px)' },
+              to: { opacity: 1, transform: 'translateY(0)' },
+            },
+          }}
+        >
           {hasActiveFilters && (
             <>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-default-500">
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Typography variant="body2" sx={{ fontWeight: 500 }} className="text-[var(--text-secondary)]">
                   Filtros ativos:
-                </span>
+                </Typography>
                 <Button
-                  variant="light"
-                  size="sm"
-                  color="danger"
-                  startContent={<X className="w-4 h-4" />}
-                  onPress={clearAllFilters}
+                  variant="text"
+                  size="small"
+                  color="error"
+                  startIcon={<X className="w-4 h-4" />}
+                  onClick={clearAllFilters}
                 >
                   Limpar Todos
                 </Button>
-              </div>
-              <Divider />
+              </Box>
+              <Divider className="border-[var(--border-default)]" />
             </>
           )}
 
           {/* Technology Filters */}
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <h3 className="text-sm font-bold text-foreground uppercase tracking-wide">
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Typography
+                variant="overline"
+                sx={{ fontWeight: 700, letterSpacing: '0.08em' }}
+                className="text-[var(--text-primary)]"
+              >
                 Tecnologias
-              </h3>
+              </Typography>
               {activeTech && (
                 <Button
-                  variant="light"
-                  size="sm"
-                  startContent={<X className="w-3 h-3" />}
-                  onPress={() => setTechFilter(null)}
+                  variant="text"
+                  size="small"
+                  startIcon={<X className="w-3 h-3" />}
+                  onClick={() => setTechFilter(null)}
                 >
                   Limpar
                 </Button>
               )}
-            </div>
+            </Box>
             
-            <div className="flex flex-wrap gap-2">
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
               {technologies.map((tech) => {
                 const isActive = activeTech === tech.slug;
                 return (
                   <Button
                     key={tech.slug}
-                    variant={isActive ? "solid" : "bordered"}
-                    color={isActive ? "primary" : "default"}
-                    size="sm"
-                    onPress={() => setTechFilter(tech.slug)}
-                    endContent={
+                    variant={isActive ? 'contained' : 'outlined'}
+                    size="small"
+                    onClick={() => setTechFilter(tech.slug)}
+                    endIcon={
                       <Chip
-                        size="sm"
-                        variant="flat"
-                        color={isActive ? "primary" : "default"}
-                        classNames={{
-                          base: "h-5 min-w-5 px-1",
-                          content: "text-xs font-mono font-bold px-1"
+                        label={tech.count}
+                        size="small"
+                        sx={{
+                          height: '20px',
+                          minWidth: '20px',
+                          fontSize: '0.75rem',
+                          fontFamily: 'monospace',
+                          fontWeight: 700,
+                          '& .MuiChip-label': { px: 0.5 },
                         }}
-                      >
-                        {tech.count}
-                      </Chip>
+                        className={isActive ? 'bg-primary/20' : 'bg-[var(--bg-elevated)]'}
+                      />
                     }
+                    sx={{ textTransform: 'none' }}
                   >
                     {tech.name}
                   </Button>
                 );
               })}
-            </div>
-          </div>
+            </Box>
+          </Box>
 
           {/* Category Filters */}
           {categories.length > 0 && (
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold text-foreground uppercase tracking-wide">
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Typography
+                  variant="overline"
+                  sx={{ fontWeight: 700, letterSpacing: '0.08em' }}
+                  className="text-[var(--text-primary)]"
+                >
                   Contexto / Módulo
-                </h3>
+                </Typography>
                 {activeCategory && (
                   <Button
-                    variant="light"
-                    size="sm"
-                    startContent={<X className="w-3 h-3" />}
-                    onPress={() => setCategoryFilter(null)}
+                    variant="text"
+                    size="small"
+                    startIcon={<X className="w-3 h-3" />}
+                    onClick={() => setCategoryFilter(null)}
                   >
                     Limpar
                   </Button>
                 )}
-              </div>
+              </Box>
               
-              <div className="flex flex-wrap gap-2">
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                 {categories.map((category) => {
                   const isActive = activeCategory === category.slug;
                   return (
                     <Button
                       key={category.slug}
-                      variant={isActive ? "flat" : "bordered"}
-                      color={isActive ? "secondary" : "default"}
-                      size="sm"
-                      onPress={() => setCategoryFilter(category.slug)}
-                      endContent={
+                      variant={isActive ? 'contained' : 'outlined'}
+                      color={isActive ? 'secondary' : 'primary'}
+                      size="small"
+                      onClick={() => setCategoryFilter(category.slug)}
+                      endIcon={
                         <Chip
-                          size="sm"
-                          variant="flat"
-                          color={isActive ? "secondary" : "default"}
-                          classNames={{
-                            base: "h-5 min-w-5 px-1",
-                            content: "text-xs font-mono font-bold px-1"
+                          label={category.count}
+                          size="small"
+                          sx={{
+                            height: '20px',
+                            minWidth: '20px',
+                            fontSize: '0.75rem',
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                            '& .MuiChip-label': { px: 0.5 },
                           }}
-                        >
-                          {category.count}
-                        </Chip>
+                          className={isActive ? 'bg-secondary/20' : 'bg-[var(--bg-elevated)]'}
+                        />
                       }
+                      sx={{ textTransform: 'none' }}
                     >
                       {category.name}
                     </Button>
                   );
                 })}
-              </div>
-            </div>
+              </Box>
+            </Box>
           )}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }

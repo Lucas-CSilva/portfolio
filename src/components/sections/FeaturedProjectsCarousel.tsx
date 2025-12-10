@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Card, CardBody, Button, Link } from '@heroui/react';
+import { Card, CardContent, Button, Link, Box, Typography, Divider } from '@mui/material';
 import {
     Carousel,
     CarouselContent,
@@ -48,24 +48,34 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
     }
 
     return (
-        <section
+        <Box
+            component="section"
             id="featured"
-            className="py-32 bg-default-50/30"
+            sx={{ py: 16 }}
+            className="bg-[var(--bg-surface)]/30"
         >
-            <div className="page-container">
-                <div className="space-y-3 text-center mb-16">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-accent-primary">
+            <Box className="page-container">
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, textAlign: 'center', mb: 8 }}>
+                    <Typography
+                        variant="overline"
+                        sx={{ fontWeight: 600, letterSpacing: '0.08em' }}
+                        className="text-[var(--accent-primary)]"
+                    >
                         Portfolio Highlights
-                    </p>
-                    <h2 className="text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
+                    </Typography>
+                    <Typography
+                        variant="h3"
+                        sx={{ fontSize: { xs: '2.5rem', lg: '3rem' }, fontWeight: 600, letterSpacing: '-0.02em' }}
+                        className="text-[var(--text-primary)]"
+                    >
                         Featured Projects
-                    </h2>
-                    <p className="text-base text-default-500 max-w-2xl mx-auto">
+                    </Typography>
+                    <Typography variant="body1" sx={{ maxWidth: 896, mx: 'auto' }} className="text-[var(--text-secondary)]">
                         Selected work showcasing technical excellence and attention to detail
-                    </p>
-                </div>
+                    </Typography>
+                </Box>
 
-                <div className="relative">
+                <Box sx={{ position: 'relative' }}>
                     <Carousel
                         setApi={setApi}
                         plugins={[plugin.current]}
@@ -80,71 +90,84 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
                         <CarouselContent>
                             {featuredProjects.map((project) => (
                                 <CarouselItem key={project.id}>
-                                    <Card 
-                                        shadow="none"
-                                        className="border border-divider bg-content1/50 backdrop-blur-sm"
+                                    <Card
+                                        elevation={0}
+                                        sx={{ border: '1px solid', backdropFilter: 'blur(8px)' }}
+                                        className="border-[var(--border-default)] bg-[var(--bg-surface)]/50"
                                     >
-                                        <CardBody className="p-8 lg:p-12 space-y-8">
-                                            <div className="space-y-4">
-                                                <div className="flex items-start justify-between gap-6">
-                                                    <div className="space-y-2 flex-1">
-                                                        <h3 className="text-2xl lg:text-3xl font-semibold tracking-tight">
+                                        <CardContent sx={{ p: { xs: 4, lg: 6 }, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                                                <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 3 }}>
+                                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, flex: 1 }}>
+                                                        <Typography
+                                                            variant="h4"
+                                                            sx={{ fontSize: { xs: '1.5rem', lg: '1.875rem' }, fontWeight: 600, letterSpacing: '-0.02em' }}
+                                                        >
                                                             {project.title}
-                                                        </h3>
+                                                        </Typography>
                                                         {project.context && (
-                                                            <p className="text-sm text-default-500 font-medium">
+                                                            <Typography variant="body2" sx={{ fontWeight: 500 }} className="text-[var(--text-secondary)]">
                                                                 {project.context}
-                                                            </p>
+                                                            </Typography>
                                                         )}
-                                                    </div>
-                                                </div>
-                                                <p className="text-base text-default-600 leading-relaxed">
+                                                    </Box>
+                                                </Box>
+                                                <Typography variant="body1" sx={{ lineHeight: 1.6 }} className="text-[var(--text-secondary)]">
                                                     {project.description}
-                                                </p>
-                                            </div>
+                                                </Typography>
+                                            </Box>
 
-                                            <div className="space-y-3">
-                                                <h4 className="text-xs font-semibold uppercase tracking-wider text-default-500">
+                                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+                                                <Typography
+                                                    variant="overline"
+                                                    sx={{ fontWeight: 600, letterSpacing: '0.08em' }}
+                                                    className="text-[var(--text-secondary)]"
+                                                >
                                                     Technology Stack
-                                                </h4>
-                                                <div className="flex flex-wrap gap-2">
+                                                </Typography>
+                                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                                                     {project.technologies.map((tech) => (
                                                         <TechBadge key={tech} technology={tech} />
                                                     ))}
-                                                </div>
-                                            </div>
+                                                </Box>
+                                            </Box>
 
                                             {(project.repoUrl || project.liveUrl) && (
-                                                <div className="flex gap-3 pt-4 border-t border-divider">
-                                                    {project.repoUrl && (
-                                                        <Button
-                                                            variant="bordered"
-                                                            size="md"
-                                                            as={Link}
-                                                            href={project.repoUrl}
-                                                            isExternal
-                                                            startContent={<Github className="h-4 w-4" />}
-                                                            className="font-medium"
-                                                        >
-                                                            View Code
-                                                        </Button>
-                                                    )}
-                                                    {project.liveUrl && (
-                                                        <Button
-                                                            variant="bordered"
-                                                            size="md"
-                                                            as={Link}
-                                                            href={project.liveUrl}
-                                                            isExternal
-                                                            startContent={<ExternalLink className="h-4 w-4" />}
-                                                            className="font-medium"
-                                                        >
-                                                            View Live
-                                                        </Button>
-                                                    )}
-                                                </div>
+                                                <>
+                                                    <Divider className="border-[var(--border-default)]" />
+                                                    <Box sx={{ display: 'flex', gap: 1.5 }}>
+                                                        {project.repoUrl && (
+                                                            <Button
+                                                                variant="outlined"
+                                                                size="medium"
+                                                                component={Link}
+                                                                href={project.repoUrl}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                startIcon={<Github className="h-4 w-4" />}
+                                                                sx={{ fontWeight: 500 }}
+                                                            >
+                                                                View Code
+                                                            </Button>
+                                                        )}
+                                                        {project.liveUrl && (
+                                                            <Button
+                                                                variant="outlined"
+                                                                size="medium"
+                                                                component={Link}
+                                                                href={project.liveUrl}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                startIcon={<ExternalLink className="h-4 w-4" />}
+                                                                sx={{ fontWeight: 500 }}
+                                                            >
+                                                                View Live
+                                                            </Button>
+                                                        )}
+                                                    </Box>
+                                                </>
                                             )}
-                                        </CardBody>
+                                        </CardContent>
                                     </Card>
                                 </CarouselItem>
                             ))}
@@ -153,22 +176,35 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
                         <CarouselNext className="hidden md:flex" />
                     </Carousel>
 
-                    <div className="flex items-center justify-center gap-2 mt-8">
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1, mt: 4 }}>
                         {Array.from({ length: count }).map((_, index) => (
-                            <button
+                            <Box
+                                component="button"
                                 key={index}
                                 onClick={() => api?.scrollTo(index)}
-                                className={`h-1.5 rounded-full transition-all ${
+                                sx={{
+                                    height: '6px',
+                                    borderRadius: '9999px',
+                                    transition: 'all 0.2s',
+                                    width: index + 1 === current ? '32px' : '6px',
+                                    cursor: 'pointer',
+                                    border: 'none',
+                                    padding: 0,
+                                    '&:hover': {
+                                        opacity: 0.8,
+                                    },
+                                }}
+                                className={
                                     index + 1 === current
-                                        ? 'w-8 bg-accent-primary'
-                                        : 'w-1.5 bg-default-300 hover:bg-default-400'
-                                }`}
+                                        ? 'bg-[var(--accent-primary)]'
+                                        : 'bg-[var(--border-default)] hover:bg-[var(--text-muted)]'
+                                }
                                 aria-label={`Go to slide ${index + 1}`}
                             />
                         ))}
-                    </div>
-                </div>
-            </div>
-        </section>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>
     );
 }

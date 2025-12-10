@@ -1,15 +1,10 @@
-/**
- * Shared TypeScript types for Nord Portfolio SPA
- * Based on contracts/types.ts
- */
-
 export interface Project {
     id: string;
     title: string;
     description: string;
     technologies: string[];
-    category?: ProjectCategory; // E.g., "Web App", "CLI Tool", "API", etc.
-    context?: string; // E.g., "E-commerce", "Productivity", "Documentation"
+    category?: ProjectCategory;
+    context?: string;
     image?: string;
     blurDataURL?: string;
     liveUrl?: string;
