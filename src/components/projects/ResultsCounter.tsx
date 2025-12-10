@@ -1,5 +1,8 @@
 'use client';
 
+import { Box, Typography } from '@mui/material';
+import { cn } from '@/lib/utils';
+
 interface ResultsCounterProps {
   showing: number;
   total: number;
@@ -9,23 +12,41 @@ export function ResultsCounter({ showing, total }: ResultsCounterProps) {
   const isFiltered = showing < total;
 
   return (
-    <div className="flex items-center gap-2 text-sm font-medium">
-      <span className="text-muted-foreground">
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 1,
+        fontSize: '0.875rem',
+        fontWeight: 500,
+      }}
+    >
+      <Typography variant="body2" className="text-[var(--text-secondary)]">
         Exibindo
-      </span>
-      <span className={`
-        px-2.5 py-1 rounded-full font-mono font-bold text-sm
-        transition-all duration-300
-        ${isFiltered 
-          ? 'bg-primary/10 text-primary border border-primary/20' 
-          : 'bg-muted/50 text-foreground border border-border/50'
-        }
-      `}>
+      </Typography>
+      <Box
+        component="span"
+        sx={{
+          px: 1.25,
+          py: 0.5,
+          borderRadius: '9999px',
+          fontFamily: 'monospace',
+          fontWeight: 700,
+          fontSize: '0.875rem',
+          transition: 'all 0.3s',
+        }}
+        className={cn(
+          'border',
+          isFiltered
+            ? 'bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border-[var(--accent-primary)]/20'
+            : 'bg-[var(--bg-elevated)]/50 text-[var(--text-primary)] border-[var(--border-default)]/50'
+        )}
+      >
         {showing}
-      </span>
-      <span className="text-muted-foreground">
+      </Box>
+      <Typography variant="body2" className="text-[var(--text-secondary)]">
         de {total} {total === 1 ? 'projeto' : 'projetos'}
-      </span>
-    </div>
+      </Typography>
+    </Box>
   );
 }

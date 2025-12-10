@@ -1,8 +1,5 @@
 import type { Project, Technology } from './types';
 
-/**
- * Extract unique technologies from projects with counts
- */
 export function getTechnologies(projects: Project[]): Technology[] {
     const techMap = new Map<string, number>();
 
@@ -18,12 +15,9 @@ export function getTechnologies(projects: Project[]): Technology[] {
             count,
             slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
         }))
-        .sort((a, b) => b.count - a.count); // Sort by count descending
+        .sort((a, b) => b.count - a.count);
 }
 
-/**
- * Get technology slug from name
- */
 export function getTechnologySlug(name: string): string {
     return name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 }

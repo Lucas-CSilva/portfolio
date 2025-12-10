@@ -1,5 +1,5 @@
-import { Chip } from "@heroui/react";
-import { cn } from "@/lib/utils";
+import { Chip } from '@mui/material';
+import { cn } from '@/lib/utils';
 
 interface TechBadgeProps {
   technology: string;
@@ -7,30 +7,29 @@ interface TechBadgeProps {
   onClick?: () => void;
 }
 
-/**
- * Professional, minimal badge styling
- * Uses subtle, monochromatic approach aligned with enterprise design
- */
 export function TechBadge({ technology, active = false, onClick }: TechBadgeProps) {
   return (
     <Chip
-      variant="flat"
-      size="sm"
-      radius="sm"
+      label={technology}
+      size="small"
       onClick={onClick}
-      classNames={{
-        base: cn(
-          "border border-divider/50 bg-default-50 transition-all",
-          active && "border-accent-primary/50 bg-accent-primary/10",
-          onClick && "cursor-pointer hover:border-divider hover:bg-default-100"
-        ),
-        content: cn(
-          "text-xs font-medium tracking-tight text-default-700",
-          active && "text-accent-primary font-semibold"
-        ),
+      sx={{
+        fontSize: '0.75rem',
+        fontWeight: active ? 600 : 500,
+        letterSpacing: '-0.01em',
+        transition: 'all 0.2s',
+        cursor: onClick ? 'pointer' : 'default',
+        '&:hover': onClick ? {
+          borderColor: 'divider',
+        } : {},
       }}
-    >
-      {technology}
-    </Chip>
+      className={cn(
+        'border',
+        active 
+          ? 'border-[var(--accent-primary)]/50 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)]'
+          : 'border-[var(--border-default)]/50 bg-[var(--bg-surface)] text-[var(--text-secondary)]',
+        onClick && 'hover:bg-[var(--bg-elevated)]'
+      )}
+    />
   );
 }

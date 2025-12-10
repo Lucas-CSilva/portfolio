@@ -9,19 +9,16 @@ export function useProjectFilter() {
     const searchParams = useSearchParams();
     const [isPending, startTransition] = useTransition();
 
-    // Get current filters from URL
     const search = searchParams.get('search') ?? '';
     const activeTech = searchParams.get('tech');
     const activeCategory = searchParams.get('category');
 
-    // Local state for instant search feedback
     const [localSearch, setLocalSearch] = useState(search);
 
     const updateFilters = useCallback(
         (updates: Partial<FilterState>) => {
             const params = new URLSearchParams(searchParams.toString());
 
-            // Handle search
             if ('search' in updates) {
                 const searchValue = updates.search?.trim();
                 if (searchValue) {
@@ -31,7 +28,6 @@ export function useProjectFilter() {
                 }
             }
 
-            // Handle technology filter
             if ('technology' in updates) {
                 const techValue = updates.technology;
                 if (techValue === null || techValue === activeTech) {
@@ -41,7 +37,6 @@ export function useProjectFilter() {
                 }
             }
 
-            // Handle category filter
             if ('category' in updates) {
                 const categoryValue = updates.category;
                 if (categoryValue === null || categoryValue === activeCategory) {

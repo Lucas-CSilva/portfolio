@@ -1,51 +1,94 @@
 'use client';
 
+import { Box, Link, Typography, Container } from '@mui/material';
 import { Github, Linkedin, Mail } from 'lucide-react';
-import { Link, Divider } from '@heroui/react';
 
 export function Footer() {
   return (
-    <footer className="w-full border-t border-divider bg-default-50/30">
-      <div className="page-container py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          
-          {/* Copyright */}
-          <div>
-            <p className="text-sm text-default-500">
-              © {new Date().getFullYear()} Lucas C. Silva. All rights reserved.
-            </p>
-          </div>
+    <Box
+      component="footer"
+      sx={{
+        width: '100%',
+        borderTop: '1px solid',
+      }}
+      className="border-[var(--border-default)] bg-[var(--bg-surface)]/30"
+    >
+      <Container maxWidth={false} className="page-container">
+        <Box
+          sx={{
+            py: 6,
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 3,
+          }}
+        >
+          <Typography variant="body2" className="text-[var(--text-secondary)]">
+            © {new Date().getFullYear()} Lucas C. Silva. All rights reserved.
+          </Typography>
 
-          {/* Social Links */}
-          <div className="flex items-center gap-6">
-            <Link 
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+            <Link
               href="https://github.com/lucas-csilva"
-              isExternal
-              className="text-sm text-default-500 hover:text-accent-primary transition-colors flex items-center gap-2"
+              target="_blank"
+              rel="noopener noreferrer"
+              underline="none"
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                fontSize: '0.875rem',
+                transition: 'color 0.2s',
+              }}
+              className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)]"
             >
               <Github className="h-4 w-4" />
-              <span className="hidden sm:inline">GitHub</span>
-            </Link>
-            
-            <Link 
-              href="https://linkedin.com"
-              isExternal
-              className="text-sm text-default-500 hover:text-accent-primary transition-colors flex items-center gap-2"
-            >
-              <Linkedin className="h-4 w-4" />
-              <span className="hidden sm:inline">LinkedIn</span>
+              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
+                GitHub
+              </Box>
             </Link>
 
-            <Link 
+            <Link
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              underline="none"
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                fontSize: '0.875rem',
+                transition: 'color 0.2s',
+              }}
+              className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)]"
+            >
+              <Linkedin className="h-4 w-4" />
+              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
+                LinkedIn
+              </Box>
+            </Link>
+
+            <Link
               href="mailto:contato@exemplo.com"
-              className="text-sm text-default-500 hover:text-accent-primary transition-colors flex items-center gap-2"
+              underline="none"
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                fontSize: '0.875rem',
+                transition: 'color 0.2s',
+              }}
+              className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)]"
             >
               <Mail className="h-4 w-4" />
-              <span className="hidden sm:inline">Contact</span>
+              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
+                Contact
+              </Box>
             </Link>
-          </div>
-        </div>
-      </div>
-    </footer>
+          </Box>
+        </Box>
+      </Container>
+    </Box>
   );
 }
