@@ -33,7 +33,7 @@ export function FilterControls({
     isPending 
   } = useProjectFilter();
 
-  const [showFilters, setShowFilters] = useState(true);
+  const [showFilters, setShowFilters] = useState(false);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
