@@ -63,7 +63,6 @@ export function Header() {
                         justifyContent: 'space-between',
                     }}
                 >
-                    {/* Brand */}
                     <MuiLink
                         href="/"
                         underline="none"
@@ -79,7 +78,6 @@ export function Header() {
                         Lucas Silva
                     </MuiLink>
 
-                    {/* Navigation */}
                     <Box
                         sx={{
                             display: { xs: 'none', md: 'flex' },
@@ -110,8 +108,7 @@ export function Header() {
                         ))}
                     </Box>
 
-                    {/* Theme Toggle */}
-                    <Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <ThemeToggle />
                     </Box>
                 </Toolbar>
