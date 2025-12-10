@@ -34,6 +34,8 @@ export function Header() {
                 behavior: 'smooth',
                 block: 'start',
             });
+
+            window.history.pushState({}, '', href);
         }
     };
 
@@ -43,13 +45,13 @@ export function Header() {
             elevation={0}
             sx={{
                 transition: 'all 0.2s',
-                backdropFilter: isScrolled ? 'blur(20px) saturate(150%)' : 'none',
+                backdropFilter: isScrolled ? 'blur(20px) saturate(150%)' : 'blur(8px)',
                 borderBottom: isScrolled ? '1px solid' : 'none',
             }}
             className={cn(
                 isScrolled
                     ? 'bg-[var(--bg-app)]/80 border-[var(--border-default)]/50'
-                    : 'bg-transparent border-transparent'
+                    : 'bg-[var(--bg-app)]/30 border-transparent'
             )}
         >
             <Container maxWidth={false} className="page-container">
@@ -70,9 +72,9 @@ export function Header() {
                             fontSize: '1.125rem',
                             letterSpacing: '-0.02em',
                             transition: 'opacity 0.2s',
+                            color: 'var(--text-primary)',
                             '&:hover': { opacity: 0.7 },
                         }}
-                        className="text-[var(--text-primary)]"
                     >
                         Lucas Silva
                     </MuiLink>
@@ -96,9 +98,12 @@ export function Header() {
                                 sx={{
                                     fontSize: '0.875rem',
                                     fontWeight: 500,
+                                    color: 'var(--text-secondary)',
                                     transition: 'color 0.2s',
+                                    '&:hover': {
+                                        color: 'var(--text-primary)',
+                                    },
                                 }}
-                                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                             >
                                 {item.name}
                             </MuiLink>
