@@ -4,20 +4,8 @@ import { ThemeProvider as NextThemesProvider, useTheme } from 'next-themes';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { lightTheme, darkTheme } from '@/lib/theme/muiTheme';
-import { useEffect, useState } from 'react';
-
 function MuiThemeWrapper({ children }: { children: React.ReactNode }) {
   const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return <>{children}</>;
-  }
-
   const currentTheme = resolvedTheme === 'dark' ? darkTheme : lightTheme;
 
   return (
