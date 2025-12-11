@@ -30,9 +30,12 @@ export function Header() {
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
-            target.scrollIntoView({
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
                 behavior: 'smooth',
-                block: 'start',
             });
 
             window.history.pushState({}, '', href);

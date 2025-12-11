@@ -7,9 +7,13 @@ export function AboutSection() {
     const scrollToProjects = () => {
         const target = document.querySelector('#featured');
         if (target) {
-            target.scrollIntoView({
+            const headerOffset = 120;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
                 behavior: 'smooth',
-                block: 'start',
             });
         }
     };

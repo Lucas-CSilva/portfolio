@@ -2,35 +2,18 @@
 
 import { IconButton, Box } from '@mui/material';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
 import { Sun, Moon } from 'lucide-react';
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setMounted(true), 0);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <IconButton size="small" disabled sx={{ opacity: 0.5 }}>
-        <Box component="span" sx={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden' }}>
-          Carregando tema
-        </Box>
-      </IconButton>
-    );
-  }
-
+  const { setTheme, theme } = useTheme();
+  
   const isDark = theme === 'dark';
 
   return (
     <IconButton
       size="small"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      aria-label={`Alternar para tema ${isDark ? 'claro' : 'escuro'}`}
+      aria-label="Alternar tema"
       sx={{ 
         position: 'relative', 
         width: '40px',
