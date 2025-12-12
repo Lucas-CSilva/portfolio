@@ -46,7 +46,6 @@ export function ProjectGallerySection({ projects }: ProjectGallerySectionProps) 
     return (
         <Box
             component="section"
-            id="gallery"
             sx={{
                 py: { xs: 8, md: 12, lg: 16 },
                 position: 'relative',
@@ -67,7 +66,7 @@ export function ProjectGallerySection({ projects }: ProjectGallerySectionProps) 
                 },
             }}
         >
-            <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 1400, mx: 'auto', px: { xs: 2, sm: 3, md: 4 } }}>
+            <Box id="gallery" sx={{ position: 'relative', zIndex: 1, maxWidth: 1400, mx: 'auto', px: { xs: 2, sm: 3, md: 4 } }}>
                 <Stack spacing={2} alignItems="center" textAlign="center" sx={{ mb: { xs: 6, md: 8 } }}>
                     <Typography
                         variant="overline"

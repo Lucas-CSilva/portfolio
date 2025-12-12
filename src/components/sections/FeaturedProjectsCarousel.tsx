@@ -95,7 +95,6 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
     return (
         <Box
             component="section"
-            id="featured"
             sx={{
                 py: { xs: 8, md: 12, lg: 16 },
                 position: 'relative',
@@ -116,7 +115,7 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
                 },
             }}
         >
-            <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 1400, mx: 'auto', px: { xs: 2, sm: 3, md: 4 } }}>
+            <Box id="featured" sx={{ position: 'relative', zIndex: 1, maxWidth: 1400, mx: 'auto', px: { xs: 2, sm: 3, md: 4 } }}>
                 <Stack spacing={2} alignItems="center" textAlign="center" sx={{ mb: { xs: 6, md: 8 } }}>
                     <Typography
                         variant="overline"

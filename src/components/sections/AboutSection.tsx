@@ -23,7 +23,6 @@ export function AboutSection() {
     return (
         <Box
             component="section"
-            id="about"
             sx={{
                 position: 'relative',
                 minHeight: '100vh',
@@ -48,7 +47,7 @@ export function AboutSection() {
                 },
             }}
         >
-            <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 1400, mx: 'auto', px: { xs: 2, sm: 3, md: 4 }, width: '100%' }}>
+            <Box id="about" sx={{ position: 'relative', zIndex: 1, maxWidth: 1400, mx: 'auto', px: { xs: 2, sm: 3, md: 4 }, width: '100%' }}>
                 <Box
                     sx={{
                         display: 'grid',

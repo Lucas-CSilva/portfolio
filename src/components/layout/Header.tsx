@@ -32,9 +32,10 @@ export function Header() {
         if (target) {
             const elementPosition = target.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset;
+            const headerOffset = window.innerWidth >= 900 ? 100 : 80;
 
             window.scrollTo({
-                top: offsetPosition,
+                top: offsetPosition - headerOffset,
                 behavior: 'smooth',
             });
 
