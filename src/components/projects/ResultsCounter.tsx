@@ -1,52 +1,76 @@
 'use client';
 
-import { Box, Typography } from '@mui/material';
-import { cn } from '@/lib/utils';
+import { Box, Typography, useTheme, alpha } from '@mui/material';
 
 interface ResultsCounterProps {
-  showing: number;
-  total: number;
+    showing: number;
+    total: number;
 }
 
 export function ResultsCounter({ showing, total }: ResultsCounterProps) {
-  const isFiltered = showing < total;
+    const theme = useTheme();
+    const isFiltered = showing < total;
 
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 1,
-        fontSize: '0.875rem',
-        fontWeight: 500,
-      }}
-    >
-      <Typography variant="body2" className="text-[var(--text-secondary)]">
-        Exibindo
-      </Typography>
-      <Box
-        component="span"
-        sx={{
-          px: 1.25,
-          py: 0.5,
-          borderRadius: '9999px',
-          fontFamily: 'monospace',
-          fontWeight: 700,
-          fontSize: '0.875rem',
-          transition: 'all 0.3s',
-        }}
-        className={cn(
-          'border',
-          isFiltered
-            ? 'bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border-[var(--accent-primary)]/20'
-            : 'bg-[var(--bg-elevated)]/50 text-[var(--text-primary)] border-[var(--border-default)]/50'
-        )}
-      >
-        {showing}
-      </Box>
-      <Typography variant="body2" className="text-[var(--text-secondary)]">
-        de {total} {total === 1 ? 'projeto' : 'projetos'}
-      </Typography>
-    </Box>
-  );
+    return (
+        <Box
+            sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                px: 2,
+                py: 1,
+                borderRadius: 2,
+                background: theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.background.paper, 0.4)
+                    : alpha('#ffffff', 0.6),
+                backdropFilter: 'blur(12px)',
+                border: `1px solid ${alpha(theme.palette.divider, 0.2)}`,
+            }}
+        >
+            <Typography
+                variant="body2"
+                sx={{
+                    color: 'text.secondary',
+                    fontSize: '0.875rem',
+                    fontWeight: 500,
+                }}
+            >
+                Exibindo
+            </Typography>
+            <Box
+                component="span"
+                sx={{
+                    px: 1.5,
+                    py: 0.5,
+                    borderRadius: '12px',
+                    fontFamily: 'monospace',
+                    fontWeight: 700,
+                    fontSize: '0.875rem',
+                    transition: 'all 0.3s ease',
+                    bgcolor: isFiltered
+                        ? alpha(theme.palette.primary.main, 0.15)
+                        : alpha(theme.palette.text.secondary, 0.08),
+                    color: isFiltered ? 'primary.main' : 'text.primary',
+                    border: `1px solid ${isFiltered
+                        ? alpha(theme.palette.primary.main, 0.3)
+                        : alpha(theme.palette.divider, 0.3)}`,
+                    boxShadow: isFiltered
+                        ? `0 2px 8px ${alpha(theme.palette.primary.main, 0.15)}`
+                        : 'none',
+                }}
+            >
+                {showing}
+            </Box>
+            <Typography
+                variant="body2"
+                sx={{
+                    color: 'text.secondary',
+                    fontSize: '0.875rem',
+                    fontWeight: 500,
+                }}
+            >
+                de {total} {total === 1 ? 'projeto' : 'projetos'}
+            </Typography>
+        </Box>
+    );
 }
