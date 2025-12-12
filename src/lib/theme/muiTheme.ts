@@ -2,8 +2,8 @@
 
 import { createTheme, ThemeOptions } from '@mui/material/styles';
 
-// Nord Color Palette
-const nord = {
+// Nord Color Palette - Single source of truth for all colors
+export const nord = {
     // Polar Night - Dark colors (nord0-nord3)
     nord0: '#2e3440',
     nord1: '#3b4252',
