@@ -1,5 +1,4 @@
 import { Chip } from '@mui/material';
-import { cn } from '@/lib/utils';
 
 interface TechBadgeProps {
   technology: string;
@@ -13,23 +12,24 @@ export function TechBadge({ technology, active = false, onClick }: TechBadgeProp
       label={technology}
       size="small"
       onClick={onClick}
+      variant={active ? 'filled' : 'outlined'}
+      color={active ? 'primary' : 'default'}
       sx={{
         fontSize: '0.75rem',
         fontWeight: active ? 600 : 500,
         letterSpacing: '-0.01em',
         transition: 'all 0.2s',
         cursor: onClick ? 'pointer' : 'default',
+        borderColor: active ? 'primary.main' : 'divider',
+        backgroundColor: active ? 'primary.main' : 'background.paper',
+        color: active ? 'primary.contrastText' : 'text.secondary',
+        opacity: active ? 1 : 0.85,
         '&:hover': onClick ? {
-          borderColor: 'divider',
+          opacity: 1,
+          backgroundColor: active ? 'primary.dark' : 'action.hover',
+          borderColor: active ? 'primary.dark' : 'text.secondary',
         } : {},
       }}
-      className={cn(
-        'border',
-        active 
-          ? 'border-[var(--accent-primary)]/50 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)]'
-          : 'border-[var(--border-default)]/50 bg-[var(--bg-surface)] text-[var(--text-secondary)]',
-        onClick && 'hover:bg-[var(--bg-elevated)]'
-      )}
     />
   );
 }

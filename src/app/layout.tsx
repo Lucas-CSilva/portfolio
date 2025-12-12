@@ -24,7 +24,7 @@ export default function RootLayout({
           {/* Background Ambience Layer */}
           <div className="fixed inset-0 -z-10 h-full w-full bg-background transition-colors">
             {/* Subtle Dot Pattern */}
-            <div className="absolute h-full w-full bg-[radial-gradient(var(--nord3)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] dark:opacity-[0.1]"></div>
+            <div className="absolute h-full w-full bg-[radial-gradient(#4c566a_1px,transparent_1px)] dark:bg-[radial-gradient(#4c566a_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] dark:opacity-[0.1]"></div>
             
             {/* Aurora Glow Effect */}
             <div className="absolute top-0 left-0 right-0 h-[500px] w-full bg-primary/5 blur-[120px] opacity-10 dark:opacity-20 rounded-full translate-y-[-50%]"></div>
