@@ -1,9 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { AppBar, Toolbar, Box, Link as MuiLink, Container } from '@mui/material';
+import { AppBar, Toolbar, Box, Link as MuiLink, Container, useTheme, alpha } from '@mui/material';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
-import { cn } from '@/lib/utils';
 
 const navigation = [
     { name: 'About', href: '#about' },
@@ -12,6 +11,7 @@ const navigation = [
 ];
 
 export function Header() {
+    const theme = useTheme();
     const [isScrolled, setIsScrolled] = React.useState(false);
 
     React.useEffect(() => {
@@ -32,9 +32,10 @@ export function Header() {
         if (target) {
             const elementPosition = target.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset;
+            const headerOffset = window.innerWidth >= 900 ? 100 : 80;
 
             window.scrollTo({
-                top: offsetPosition,
+                top: offsetPosition - headerOffset,
                 behavior: 'smooth',
             });
 
@@ -47,20 +48,27 @@ export function Header() {
             position="sticky"
             elevation={0}
             sx={{
-                transition: 'all 0.2s',
-                backdropFilter: isScrolled ? 'blur(20px) saturate(150%)' : 'blur(8px)',
-                borderBottom: isScrolled ? '1px solid' : 'none',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                backdropFilter: isScrolled ? 'blur(20px) saturate(150%)' : 'blur(12px)',
+                borderBottom: isScrolled
+                    ? `1px solid ${alpha(theme.palette.divider, 0.4)}`
+                    : `1px solid transparent`,
+                background: isScrolled
+                    ? theme.palette.mode === 'dark'
+                        ? `linear-gradient(180deg, ${alpha(theme.palette.background.default, 0.9)} 0%, ${alpha(theme.palette.background.paper, 0.8)} 100%)`
+                        : alpha('#ffffff', 0.9)
+                    : theme.palette.mode === 'dark'
+                        ? alpha(theme.palette.background.default, 0.4)
+                        : alpha('#ffffff', 0.4),
+                boxShadow: isScrolled
+                    ? `0 4px 24px ${alpha(theme.palette.common.black, theme.palette.mode === 'dark' ? 0.3 : 0.05)}`
+                    : 'none',
             }}
-            className={cn(
-                isScrolled
-                    ? 'bg-[var(--bg-app)]/80 border-[var(--border-default)]/50'
-                    : 'bg-[var(--bg-app)]/30 border-transparent'
-            )}
         >
-            <Container maxWidth={false} className="page-container">
+            <Container maxWidth={false} sx={{ maxWidth: 1400, px: { xs: 2, sm: 3, md: 4 } }}>
                 <Toolbar
                     sx={{
-                        minHeight: '5rem',
+                        minHeight: { xs: '64px', md: '80px' },
                         px: 0,
                         display: 'flex',
                         justifyContent: 'space-between',
@@ -70,12 +78,15 @@ export function Header() {
                         href="/"
                         underline="none"
                         sx={{
-                            fontWeight: 600,
-                            fontSize: '1.125rem',
+                            fontWeight: 700,
+                            fontSize: { xs: '1rem', md: '1.125rem' },
                             letterSpacing: '-0.02em',
-                            transition: 'opacity 0.2s',
-                            color: 'var(--text-primary)',
-                            '&:hover': { opacity: 0.7 },
+                            transition: 'all 0.3s ease',
+                            color: 'text.primary',
+                            '&:hover': {
+                                opacity: 0.7,
+                                transform: 'translateY(-1px)',
+                            },
                         }}
                     >
                         Lucas Silva
@@ -97,12 +108,28 @@ export function Header() {
                                 onClick={(e) => handleNavClick(e, item.href)}
                                 underline="none"
                                 sx={{
-                                    fontSize: '0.875rem',
-                                    fontWeight: 500,
-                                    color: 'var(--text-secondary)',
-                                    transition: 'color 0.2s',
+                                    fontSize: '0.9375rem',
+                                    fontWeight: 600,
+                                    color: 'text.secondary',
+                                    transition: 'all 0.3s ease',
+                                    position: 'relative',
+                                    '&::after': {
+                                        content: '""',
+                                        position: 'absolute',
+                                        bottom: '-4px',
+                                        left: 0,
+                                        width: 0,
+                                        height: '2px',
+                                        bgcolor: 'primary.main',
+                                        transition: 'width 0.3s ease',
+                                        borderRadius: '2px',
+                                    },
                                     '&:hover': {
-                                        color: 'var(--text-primary)',
+                                        color: 'text.primary',
+                                        transform: 'translateY(-2px)',
+                                        '&::after': {
+                                            width: '100%',
+                                        },
                                     },
                                 }}
                             >

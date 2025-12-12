@@ -12,6 +12,7 @@ function MuiThemeWrapper({ children }: { children: React.ReactNode }) {
   
   // Prevent hydration mismatch by only rendering MUI after client-side mount
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 

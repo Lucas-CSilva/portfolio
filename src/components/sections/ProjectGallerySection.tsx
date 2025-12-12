@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useTheme, alpha, Stack } from '@mui/material';
 import type { Project } from '@/lib/types';
 import { FilterControls } from '@/components/projects/FilterControls';
 import { ProjectGallery } from '@/components/projects/ProjectGallery';
@@ -14,6 +14,7 @@ interface ProjectGallerySectionProps {
 }
 
 export function ProjectGallerySection({ projects }: ProjectGallerySectionProps) {
+    const theme = useTheme();
     const { search, activeTech, activeCategory } = useProjectFilter();
 
     const technologies = getTechnologies(projects);
@@ -45,31 +46,70 @@ export function ProjectGallerySection({ projects }: ProjectGallerySectionProps) 
     return (
         <Box
             component="section"
-            id="gallery"
-            sx={{ py: 16 }}
+            sx={{
+                py: { xs: 8, md: 12, lg: 16 },
+                position: 'relative',
+                overflow: 'hidden',
+                '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    bottom: 0,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '80%',
+                    height: '60%',
+                    background: theme.palette.mode === 'dark'
+                        ? `radial-gradient(ellipse at center, ${alpha(theme.palette.secondary.main, 0.08)} 0%, transparent 60%)`
+                        : `radial-gradient(ellipse at center, ${alpha(theme.palette.secondary.light, 0.06)} 0%, transparent 50%)`,
+                    pointerEvents: 'none',
+                    zIndex: 0,
+                },
+            }}
         >
-            <Box className="page-container">
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, textAlign: 'center', mb: 8 }}>
+            <Box id="gallery" sx={{ position: 'relative', zIndex: 1, maxWidth: 1400, mx: 'auto', px: { xs: 2, sm: 3, md: 4 } }}>
+                <Stack spacing={2} alignItems="center" textAlign="center" sx={{ mb: { xs: 6, md: 8 } }}>
                     <Typography
                         variant="overline"
-                        sx={{ fontWeight: 600, letterSpacing: '0.08em' }}
-                        className="text-[var(--accent-primary)]"
+                        sx={{
+                            fontWeight: 600,
+                            letterSpacing: '0.15em',
+                            color: 'primary.main',
+                            fontSize: { xs: '0.75rem', md: '0.875rem' },
+                        }}
                     >
                         Complete Portfolio
                     </Typography>
                     <Typography
-                        variant="h3"
-                        sx={{ fontSize: { xs: '2.5rem', lg: '3rem' }, fontWeight: 600, letterSpacing: '-0.02em' }}
-                        className="text-[var(--text-primary)]"
+                        variant="h2"
+                        sx={{
+                            fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem', lg: '3.5rem' },
+                            fontWeight: 700,
+                            letterSpacing: '-0.02em',
+                            background: theme.palette.mode === 'dark'
+                                ? `linear-gradient(135deg, ${theme.palette.text.primary} 0%, ${alpha(theme.palette.text.primary, 0.7)} 100%)`
+                                : `linear-gradient(135deg, ${theme.palette.text.primary} 0%, ${theme.palette.primary.dark} 100%)`,
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
+                        }}
                     >
                         All Projects
                     </Typography>
-                    <Typography variant="body1" sx={{ maxWidth: 896, mx: 'auto' }} className="text-[var(--text-secondary)]">
+                    <Typography
+                        variant="body1"
+                        sx={{
+                            maxWidth: 896,
+                            mx: 'auto',
+                            color: 'text.secondary',
+                            fontSize: { xs: '0.95rem', md: '1.05rem' },
+                            lineHeight: 1.7,
+                        }}
+                    >
                         Browse the complete collection, filter by technology
                     </Typography>
-                </Box>
+                </Stack>
 
-                <Box sx={{ mb: 6 }}>
+                <Box sx={{ mb: { xs: 6, md: 8 } }}>
                     <FilterControls
                         technologies={technologies}
                         categories={categories}
