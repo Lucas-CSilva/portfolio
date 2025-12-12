@@ -1,24 +1,10 @@
 'use client';
 
-import { Button, Card, CardContent, Chip, Link, Divider, Box, Typography, IconButton, useTheme, alpha, Stack } from '@mui/material';
-import { Github, Linkedin, Mail, ArrowDown } from 'lucide-react';
+import { Button, Card, CardContent, Chip, Link, Divider, Box, Typography, useTheme, alpha, Stack } from '@mui/material';
+import { Github, Linkedin, Mail, } from 'lucide-react';
 
 export function AboutSection() {
     const theme = useTheme();
-
-    const scrollToProjects = () => {
-        const target = document.querySelector('#featured');
-        if (target) {
-            const headerOffset = 120;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth',
-            });
-        }
-    };
 
     return (
         <Box
@@ -332,41 +318,6 @@ export function AboutSection() {
                             </Stack>
                         </CardContent>
                     </Card>
-                </Box>
-
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        bottom: { xs: 24, md: 48 },
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                    }}
-                >
-                    <IconButton
-                        size="large"
-                        onClick={scrollToProjects}
-                        sx={{
-                            width: 48,
-                            height: 48,
-                            bgcolor: alpha(theme.palette.background.paper, 0.8),
-                            backdropFilter: 'blur(12px)',
-                            border: `1px solid ${alpha(theme.palette.divider, 0.3)}`,
-                            transition: 'all 0.3s ease',
-                            animation: 'bounce 2s infinite',
-                            '@keyframes bounce': {
-                                '0%, 100%': { transform: 'translateY(0)' },
-                                '50%': { transform: 'translateY(-8px)' },
-                            },
-                            '&:hover': {
-                                bgcolor: alpha(theme.palette.background.paper, 0.95),
-                                transform: 'translateY(-2px)',
-                                boxShadow: `0 8px 24px ${alpha(theme.palette.common.black, 0.15)}`,
-                            },
-                        }}
-                        aria-label="Scroll to projects"
-                    >
-                        <ArrowDown className="h-5 w-5" />
-                    </IconButton>
                 </Box>
             </Box>
         </Box>
