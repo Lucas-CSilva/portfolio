@@ -14,6 +14,8 @@ export const projects: Project[] = [
         order: 1,
         featured: true,
         status: 'completed',
+        liveUrl: 'https://exemplo.com',
+        repoUrl: 'https://github.com/usuario/projeto',
     },
     {
         id: 'task-management-app',

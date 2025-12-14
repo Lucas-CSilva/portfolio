@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { AppBar, Toolbar, Box, Link as MuiLink, Container, useTheme, alpha } from '@mui/material';
+import { useRouter, usePathname } from 'next/navigation';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 
 const navigation = [
@@ -12,7 +13,10 @@ const navigation = [
 
 export function Header() {
     const theme = useTheme();
+    const router = useRouter();
+    const pathname = usePathname();
     const [isScrolled, setIsScrolled] = React.useState(false);
+    const isHomePage = pathname === '/';
 
     React.useEffect(() => {
         const handleScroll = () => {
@@ -28,6 +32,12 @@ export function Header() {
         href: string
     ) => {
         e.preventDefault();
+        
+        if (!isHomePage) {
+            router.push(`/${href}`);
+            return;
+        }
+
         const target = document.querySelector(href);
         if (target) {
             const elementPosition = target.getBoundingClientRect().top;
