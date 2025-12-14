@@ -13,6 +13,7 @@ export const projects: Project[] = [
         context: 'E-commerce',
         order: 1,
         featured: true,
+        status: 'completed',
     },
     {
         id: 'task-management-app',
@@ -22,6 +23,7 @@ export const projects: Project[] = [
         context: 'Productivity',
         order: 2,
         featured: true,
+        status: 'completed',
     },
     {
         id: 'weather-dashboard',
@@ -30,6 +32,7 @@ export const projects: Project[] = [
         technologies: ['React', 'TypeScript', 'OpenWeather API', 'Recharts'],
         context: 'Data Visualization',
         order: 3,
+        status: 'in-progress',
     },
     {
         id: 'blog-cms',
@@ -38,6 +41,7 @@ export const projects: Project[] = [
         technologies: ['Next.js', 'TypeScript', 'MDX', 'Contentful'],
         context: 'Content Management',
         order: 4,
+        status: 'completed',
     },
     {
         id: 'portfolio-generator',
@@ -46,6 +50,7 @@ export const projects: Project[] = [
         technologies: ['Node.js', 'TypeScript', 'Commander', 'Sharp'],
         context: 'Developer Tools',
         order: 5,
+        status: 'in-progress',
     },
     {
         id: 'api-documentation',
@@ -54,6 +59,7 @@ export const projects: Project[] = [
         technologies: ['React', 'TypeScript', 'OpenAPI', 'Monaco Editor'],
         context: 'Documentation',
         order: 6,
+        status: 'completed',
     },
     {
         id: 'data-visualization',
@@ -62,6 +68,7 @@ export const projects: Project[] = [
         technologies: ['React', 'TypeScript', 'D3.js', 'Tailwind CSS'],
         context: 'Data Visualization',
         order: 7,
+        status: 'to-do',
     },
     {
         id: 'chat-application',
@@ -70,5 +77,6 @@ export const projects: Project[] = [
         technologies: ['React', 'TypeScript', 'Socket.io', 'Express'],
         context: 'Communication',
         order: 8,
+        status: 'to-do',
     },
 ];

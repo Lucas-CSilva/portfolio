@@ -1,19 +1,43 @@
+'use client';
+
 import type { Project } from '@/lib/types';
-import { Card, CardContent, Link, Box, Typography, Divider, useTheme, alpha, Stack, Chip } from '@mui/material';
+import { Card, CardContent, Box, Typography, Divider, useTheme, alpha, Stack, Chip } from '@mui/material';
 import { ArrowUpRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { StatusBadge } from './StatusBadge';
+import { generateSlug } from '@/lib/projects';
 
 export function ProjectCard(project: Project) {
     const theme = useTheme();
+    const router = useRouter();
+
+    const handleClick = () => {
+        const slug = generateSlug(project.title);
+        router.push(`/projects/${slug}`);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleClick();
+        }
+    };
 
     return (
-        <Link
-            href={project.liveUrl || project.repoUrl || '#'}
-            target={project.liveUrl || project.repoUrl ? '_blank' : undefined}
-            rel={project.liveUrl || project.repoUrl ? 'noopener noreferrer' : undefined}
-            underline="none"
+        <Box
+            onClick={handleClick}
+            onKeyDown={handleKeyDown}
+            tabIndex={0}
+            role="button"
+            aria-label={`View ${project.title} details`}
             sx={{
                 display: 'block',
                 height: '100%',
+                cursor: 'pointer',
+                '&:focus-visible': {
+                    outline: `2px solid ${theme.palette.primary.main}`,
+                    outlineOffset: 2,
+                },
             }}
         >
             <Card
@@ -70,7 +94,7 @@ export function ProjectCard(project: Project) {
                 >
                     <Stack spacing={2}>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 2 }}>
-                            <Box sx={{ flex: 1, minWidth: 0 }}>
+                            <Box sx={{ flex: 1, minWidth: 0, pr: 1 }}>
                                 <Typography
                                     variant="h6"
                                     sx={{
@@ -84,20 +108,23 @@ export function ProjectCard(project: Project) {
                                 >
                                     {project.title}
                                 </Typography>
-                                {project.context && (
-                                    <Typography
-                                        variant="caption"
-                                        sx={{
-                                            fontWeight: 500,
-                                            color: 'primary.main',
-                                            fontSize: '0.75rem',
-                                            letterSpacing: '0.05em',
-                                            textTransform: 'uppercase',
-                                        }}
-                                    >
-                                        {project.context}
-                                    </Typography>
-                                )}
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }}>
+                                    <StatusBadge status={project.status} size="small" />
+                                    {project.context && (
+                                        <Typography
+                                            variant="caption"
+                                            sx={{
+                                                fontWeight: 500,
+                                                color: 'primary.main',
+                                                fontSize: '0.75rem',
+                                                letterSpacing: '0.05em',
+                                                textTransform: 'uppercase',
+                                            }}
+                                        >
+                                            {project.context}
+                                        </Typography>
+                                    )}
+                                </Box>
                             </Box>
                             <ArrowUpRight
                                 className="project-icon"
@@ -128,7 +155,6 @@ export function ProjectCard(project: Project) {
                         </Typography>
                     </Stack>
 
-                    {/* Technologies */}
                     <Box sx={{ mt: 'auto' }}>
                         <Divider sx={{ mb: 2, borderColor: alpha(theme.palette.divider, 0.4) }} />
                         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
@@ -177,6 +203,6 @@ export function ProjectCard(project: Project) {
                     </Box>
                 </CardContent>
             </Card>
-        </Link>
+        </Box>
     );
 }
