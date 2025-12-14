@@ -29,20 +29,10 @@ export function ProjectDetailView({ project, showBackButton = true }: ProjectDet
             sx={{
                 position: 'relative',
                 overflow: 'hidden',
-                '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '90%',
-                    height: '600px',
-                    background: theme.palette.mode === 'dark'
-                        ? `radial-gradient(ellipse at top, ${alpha(theme.palette.primary.main, 0.15)} 0%, ${alpha(theme.palette.secondary.main, 0.08)} 40%, transparent 70%)`
-                        : `radial-gradient(ellipse at top, ${alpha(theme.palette.primary.light, 0.12)} 0%, transparent 60%)`,
-                    pointerEvents: 'none',
-                    zIndex: 0,
-                },
+                minHeight: '100vh',
+                background: theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.background.default, 0.4)
+                    : alpha(theme.palette.background.default, 0.4),
             }}
         >
             <Container 
