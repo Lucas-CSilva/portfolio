@@ -4,7 +4,8 @@ export const projects: Project[] = [
     {
         id: 'ispitch',
         title: 'isPitch: AI Oratory Analysis',
-        summary: 'Plataforma inteligente para análise de oratória e comunicação. Utiliza OpenAI Whisper para transcrição automática e spaCy (NLP) para identificar vícios de linguagem e pausas, oferecendo feedback técnico visual para evolução da fala.',
+        summary: 'Plataforma de IA para análise de oratória com transcrição e feedback visual.',
+        description: 'O isPitch é uma plataforma inteligente projetada para aprimorar habilidades de comunicação. Utilizando o modelo Whisper da OpenAI para transcrição de alta precisão e processamento de linguagem natural (spaCy), o sistema analisa vícios de linguagem, pausas e ritmo da fala. A arquitetura moderna combina um backend em FastAPI (Python) com um frontend interativo em Next.js, oferecendo feedbacks técnicos detalhados e visuais para estudantes e profissionais.',
         technologies: ['Next.js', 'FastAPI', 'Python', 'OpenAI Whisper', 'Docker'],
         context: 'Full Stack & AI',
         order: 1,
@@ -15,7 +16,8 @@ export const projects: Project[] = [
     {
         id: 'janus',
         title: 'Janus: Global Narrative Intelligence',
-        summary: 'Plataforma distribuída para análise de narrativas midiáticas em tempo real. Utiliza Arquitetura Kappa, NLP para detecção de viés e Grafos de Conhecimento para visualizar dissonância semântica global.',
+        summary: 'Sistema distribuído de inteligência de narrativas global.',
+        description: 'O Janus é um sistema distribuído orientado a eventos (Arquitetura Kappa) para monitorização de narrativas midiáticas. A plataforma ingere streams globais de notícias via Kafka, aplica modelos de NLP para detectar viés e dissonância semântica, e projeta os resultados em grafos de conhecimento (Neo4j). Desenvolvido para alta escala, utiliza microsserviços poliglotas (Python, Java) para processar e correlacionar informações geopolíticas complexas.',
         technologies: ['Kafka', 'Python', 'Neo4j', 'Spring Web Flux', 'MongoDB'],
         context: 'Data Engineering & AI',
         order: 2,
@@ -26,7 +28,8 @@ export const projects: Project[] = [
     {
         id: 'portfolio',
         title: 'Portfolio',
-        summary: 'Este portfólio. Uma aplicação SPA moderna focada em Developer Experience e Acessibilidade. Implementa design system Nord, filtragem via URL-state, arquitetura modular e pontuação máxima no Lighthouse.',
+        summary: 'SPA moderna focada em DX e Acessibilidade.',
+        description: 'Este portfólio pessoal é uma Single Page Application (SPA) construída com Next.js e TypeScript, focada em performance e experiência do programador (DX). Implementa um Design System consistente baseado no tema Nord, filtragem de estado via URL (useSearchParams), suporte a temas dark/light e segue rigorosos padrões de acessibilidade (WCAG).',
         technologies: ['Next.js', 'TypeScript', 'Tailwind', 'Material UI'],
         context: 'Frontend Architecture',
         order: 3,
@@ -37,7 +40,8 @@ export const projects: Project[] = [
     {
         id: 'pascal-compiler',
         title: 'Pascal Compiler',
-        summary: 'Compilador construído do zero em C para um subconjunto da linguagem Pascal. Implementa analisadores léxico, sintático e semântico, incluindo gerenciamento de tabela de símbolos e detecção de erros.',
+        summary: 'Compilador Pascal completo desenvolvido em C com análise semântica.',
+        description: 'Um compilador robusto desenvolvido do zero em C para um subconjunto da linguagem Pascal. O projeto implementa todas as fases tradicionais de compilação: um analisador léxico eficiente, um parser descendente recursivo para validação sintática e um analisador semântico com gestão rigorosa de tabela de símbolos e tipos. Inclui mecanismos de recuperação de erros e geração de código intermediário.',
         technologies: ['C', 'Compiler Design', 'Make', 'Data Structures'],
         context: 'Systems Programming',
         order: 4,
@@ -48,7 +52,8 @@ export const projects: Project[] = [
     {
         id: 'cli-calculator',
         title: 'CLI Calculator',
-        summary: 'Calculadora de linha de comando robusta capaz de processar expressões matemáticas complexas. Suporta precedência de operadores (PEMDAS), variáveis dinâmicas e análise sintática recursiva.',
+        summary: 'Parser de expressões matemáticas com suporte a variáveis e precedência.',
+        description: 'Uma calculadora de linha de comandos (CLI) avançada que implementa um parser de expressões matemáticas recursivo. O sistema suporta a ordem correta de operações (PEMDAS), uso de parênteses aninhados e, crucialmente, permite a criação e atribuição de variáveis dinâmicas em tempo de execução. Escrito em C, o projeto exemplifica a gestão eficiente de memória e a implementação de algoritmos de parsing clássicos.',
         technologies: ['C', 'Parser Logic', 'CLI'],
         context: 'Tools',
         order: 5,
@@ -59,7 +64,8 @@ export const projects: Project[] = [
     {
         id: 'assembly-embedded-system',
         title: 'Embedded Assembly Control',
-        summary: 'Sistema de baixo nível desenvolvido em Assembly. Controla interrupções de hardware, cronômetros, display de LEDs e interação via terminal, demonstrando gestão direta de memória e registradores.',
+        summary: 'Sistema de controle de hardware de baixo nível com gestão de interrupções.',
+        description: 'Sistema embarcado desenvolvido puramente em Assembly, focado no controle direto de hardware. O projeto gere interrupções de processador, cronómetros de hardware e interfaces de I/O (display de LEDs e terminal), exigindo manipulação precisa de registradores e endereçamento de memória. É uma demonstração prática de conhecimento sobre arquitetura de computadores.',
         technologies: ['Assembly', 'Hardware Interrupts', 'Low-level'],
         context: 'Embedded Systems',
         order: 6,

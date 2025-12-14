@@ -4,6 +4,7 @@ export interface Project {
     id: string;
     title: string;
     summary: string;
+    description: string;
     status: ProjectStatus;
     technologies: string[];
     category?: ProjectCategory;

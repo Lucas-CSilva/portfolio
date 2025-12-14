@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Link, Typography, Container, useTheme, alpha, Stack } from '@mui/material';
-import { GitHub as GitHubIcon, LinkedIn as LikedInIcon } from '@mui/icons-material';
+import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon } from '@mui/icons-material';
 
 export function Footer() {
     const theme = useTheme();
@@ -86,7 +86,7 @@ export function Footer() {
                                 },
                             }}
                         >
-                            <LikedInIcon style={{ width: '18px', height: '18px' }} />
+                            <LinkedInIcon style={{ width: '18px', height: '18px' }} />
                             <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
                                 LinkedIn
                             </Box>

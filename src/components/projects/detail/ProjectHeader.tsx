@@ -79,7 +79,7 @@ export function ProjectHeader({ project }: ProjectHeaderProps) {
                     fontWeight: 400,
                 }}
             >
-                {project.summary}
+                {project.description}
             </Typography>
         </Stack>
     );

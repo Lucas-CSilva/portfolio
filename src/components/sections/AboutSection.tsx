@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Card, CardContent, Chip, Link, Divider, Box, Typography, useTheme, alpha, Stack } from '@mui/material';
-import { GitHub as GitHubIcon, LinkedIn as LikedInIcon } from '@mui/icons-material';
+import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon } from '@mui/icons-material';
 
 export function AboutSection() {
     const theme = useTheme();
@@ -134,7 +134,7 @@ export function AboutSection() {
                                 href="https://www.linkedin.com/in/lucas-correia-silva/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                startIcon={<LikedInIcon className="h-5 w-5" />}
+                                startIcon={<LinkedInIcon className="h-5 w-5" />}
                                 sx={{
                                     fontWeight: 600,
                                     fontSize: '0.9375rem',
