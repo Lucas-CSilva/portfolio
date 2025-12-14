@@ -58,7 +58,7 @@ export function ProjectHeader({ project }: ProjectHeaderProps) {
                     fontSize: { xs: '2.25rem', sm: '3rem', md: '3.5rem', lg: '4rem' },
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
-                    lineHeight: 1.1,
+                    lineHeight: 1.2,
                     background: theme.palette.mode === 'dark'
                         ? `linear-gradient(135deg, ${theme.palette.text.primary} 0%, ${alpha(theme.palette.text.primary, 0.7)} 100%)`
                         : `linear-gradient(135deg, ${theme.palette.text.primary} 0%, ${theme.palette.primary.dark} 100%)`,
