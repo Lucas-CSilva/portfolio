@@ -24,7 +24,7 @@ export function filterProjects(
         filtered = filtered.filter(
             (project) =>
                 project.title.toLowerCase().includes(searchLower) ||
-                project.description.toLowerCase().includes(searchLower) ||
+                project.summary.toLowerCase().includes(searchLower) ||
                 project.technologies.some(tech => tech.toLowerCase().includes(searchLower))
         );
     }
@@ -66,27 +66,6 @@ export function getCategories(projects: Project[]): Category[] {
         .sort((a, b) => b.count - a.count);
 }
 
-export function generateSlug(title: string): string {
-    return title
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '');
-}
-
-
-export function validateSlugUniqueness(
-    projects: Project[],
-    slug: string,
-    excludeId?: string
-): boolean {
-    return !projects.some(
-        (project) =>
-            generateSlug(project.title) === slug &&
-            project.id !== excludeId
-    );
-}
-
-
-export function findProjectBySlug(projects: Project[], slug: string): Project | undefined {
-    return projects.find((project) => generateSlug(project.title) === slug);
+export function findProjectById(projects: Project[], id: string): Project | undefined {
+    return projects.find((project) => project.id === id);
 }

@@ -5,15 +5,13 @@ import { Card, CardContent, Box, Typography, Divider, useTheme, alpha, Stack, Ch
 import { ArrowUpRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { StatusBadge } from './StatusBadge';
-import { generateSlug } from '@/lib/projects';
 
 export function ProjectCard(project: Project) {
     const theme = useTheme();
     const router = useRouter();
 
     const handleClick = () => {
-        const slug = generateSlug(project.title);
-        router.push(`/projects/${slug}`);
+        router.push(`/projects/${project.id}`);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -156,7 +154,7 @@ export function ProjectCard(project: Project) {
                             </Box>
                         )}
 
-                        {/* Description */}
+
                         <Typography
                             variant="body2"
                             sx={{
@@ -170,7 +168,7 @@ export function ProjectCard(project: Project) {
                                 fontSize: { xs: '0.875rem', md: '0.9rem' },
                             }}
                         >
-                            {project.description}
+                            {project.summary}
                         </Typography>
                     </Stack>
 

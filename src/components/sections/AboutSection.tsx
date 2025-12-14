@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Card, CardContent, Chip, Link, Divider, Box, Typography, useTheme, alpha, Stack } from '@mui/material';
-import { Github, Linkedin, Mail, } from 'lucide-react';
+import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon } from '@mui/icons-material';
 
 export function AboutSection() {
     const theme = useTheme();
@@ -105,10 +105,10 @@ export function AboutSection() {
                                 variant="outlined"
                                 size="large"
                                 component={Link}
-                                href="https://github.com"
+                                href="https://github.com/lucas-csilva"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                startIcon={<Github className="h-5 w-5" />}
+                                startIcon={<GitHubIcon className="h-5 w-5" />}
                                 sx={{
                                     fontWeight: 600,
                                     fontSize: '0.9375rem',
@@ -131,10 +131,10 @@ export function AboutSection() {
                                 variant="outlined"
                                 size="large"
                                 component={Link}
-                                href="https://linkedin.com"
+                                href="https://www.linkedin.com/in/lucas-correia-silva/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                startIcon={<Linkedin className="h-5 w-5" />}
+                                startIcon={<LinkedInIcon className="h-5 w-5" />}
                                 sx={{
                                     fontWeight: 600,
                                     fontSize: '0.9375rem',
@@ -152,29 +152,6 @@ export function AboutSection() {
                                 }}
                             >
                                 LinkedIn
-                            </Button>
-                            <Button
-                                variant="contained"
-                                size="large"
-                                component={Link}
-                                href="mailto:contato@example.com"
-                                startIcon={<Mail className="h-5 w-5" />}
-                                sx={{
-                                    fontWeight: 600,
-                                    fontSize: '0.9375rem',
-                                    py: 1.25,
-                                    px: 3,
-                                    borderRadius: 2,
-                                    textTransform: 'none',
-                                    boxShadow: `0 4px 16px ${alpha(theme.palette.primary.main, 0.3)}`,
-                                    transition: 'all 0.3s ease',
-                                    '&:hover': {
-                                        transform: 'translateY(-2px)',
-                                        boxShadow: `0 8px 28px ${alpha(theme.palette.primary.main, 0.4)}`,
-                                    },
-                                }}
-                            >
-                                Contact
                             </Button>
                         </Stack>
                     </Stack>

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Box, Typography, Stack, Chip, alpha, useTheme } from '@mui/material';
 import type { Project } from '@/lib/types';
 import { StatusBadge } from '../StatusBadge';

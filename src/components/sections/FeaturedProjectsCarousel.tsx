@@ -26,7 +26,6 @@ import Autoplay from 'embla-carousel-autoplay';
 import { useRouter } from 'next/navigation';
 import type { Project } from '@/lib/types';
 import { StatusBadge } from '../projects/StatusBadge';
-import { generateSlug } from '@/lib/projects';
 
 interface FeaturedProjectsCarouselProps {
     projects: Project[];
@@ -93,8 +92,7 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
     const featuredProjects = projects.filter((p) => p.featured);
 
     const handleProjectClick = (project: Project) => {
-        const slug = generateSlug(project.title);
-        router.push(`/projects/${slug}`);
+        router.push(`/projects/${project.id}`);
     };
 
     if (featuredProjects.length === 0) {
