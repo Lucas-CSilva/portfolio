@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Link, Typography, Container, useTheme, alpha, Stack } from '@mui/material';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { GitHub as GitHubIcon, LinkedIn as LikedInIcon } from '@mui/icons-material';
 
 export function Footer() {
     const theme = useTheme();
@@ -61,14 +61,14 @@ export function Footer() {
                                 },
                             }}
                         >
-                            <Github style={{ width: '18px', height: '18px' }} />
+                            <GitHubIcon style={{ width: '18px', height: '18px' }} />
                             <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
                                 GitHub
                             </Box>
                         </Link>
 
                         <Link
-                            href="https://linkedin.com"
+                            href="https://www.linkedin.com/in/lucas-correia-silva/"
                             target="_blank"
                             rel="noopener noreferrer"
                             underline="none"
@@ -86,32 +86,9 @@ export function Footer() {
                                 },
                             }}
                         >
-                            <Linkedin style={{ width: '18px', height: '18px' }} />
+                            <LikedInIcon style={{ width: '18px', height: '18px' }} />
                             <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
                                 LinkedIn
-                            </Box>
-                        </Link>
-
-                        <Link
-                            href="mailto:contato@exemplo.com"
-                            underline="none"
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: 1,
-                                fontSize: '0.875rem',
-                                fontWeight: 500,
-                                color: 'text.secondary',
-                                transition: 'all 0.3s ease',
-                                '&:hover': {
-                                    color: 'primary.main',
-                                    transform: 'translateY(-2px)',
-                                },
-                            }}
-                        >
-                            <Mail style={{ width: '18px', height: '18px' }} />
-                            <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
-                                Contact
                             </Box>
                         </Link>
                     </Stack>

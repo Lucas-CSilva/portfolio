@@ -5,15 +5,13 @@ import { Card, CardContent, Box, Typography, Divider, useTheme, alpha, Stack, Ch
 import { ArrowUpRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { StatusBadge } from './StatusBadge';
-import { generateSlug } from '@/lib/projects';
 
 export function ProjectCard(project: Project) {
     const theme = useTheme();
     const router = useRouter();
 
     const handleClick = () => {
-        const slug = generateSlug(project.title);
-        router.push(`/projects/${slug}`);
+        router.push(`/projects/${project.id}`);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
