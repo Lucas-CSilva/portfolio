@@ -92,40 +92,11 @@ export function ProjectCard(project: Project) {
                         minHeight: { md: 280 },
                     }}
                 >
+                    {/* Header Section */}
                     <Stack spacing={2}>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 2 }}>
-                            <Box sx={{ flex: 1, minWidth: 0, pr: 1 }}>
-                                <Typography
-                                    variant="h6"
-                                    sx={{
-                                        fontWeight: 700,
-                                        letterSpacing: '-0.02em',
-                                        mb: 1,
-                                        fontSize: { xs: '1.125rem', md: '1.25rem' },
-                                        color: 'text.primary',
-                                        transition: 'color 0.2s',
-                                    }}
-                                >
-                                    {project.title}
-                                </Typography>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }}>
-                                    <StatusBadge status={project.status} size="small" />
-                                    {project.context && (
-                                        <Typography
-                                            variant="caption"
-                                            sx={{
-                                                fontWeight: 500,
-                                                color: 'primary.main',
-                                                fontSize: '0.75rem',
-                                                letterSpacing: '0.05em',
-                                                textTransform: 'uppercase',
-                                            }}
-                                        >
-                                            {project.context}
-                                        </Typography>
-                                    )}
-                                </Box>
-                            </Box>
+                        {/* Status Badge - Top Position */}
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                            <StatusBadge status={project.status} size="small" />
                             <ArrowUpRight
                                 className="project-icon"
                                 style={{
@@ -138,6 +109,54 @@ export function ProjectCard(project: Project) {
                             />
                         </Box>
 
+                        {/* Title */}
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                fontWeight: 700,
+                                letterSpacing: '-0.02em',
+                                fontSize: { xs: '1.125rem', md: '1.25rem' },
+                                color: 'text.primary',
+                                transition: 'color 0.2s',
+                                lineHeight: 1.3,
+                            }}
+                        >
+                            {project.title}
+                        </Typography>
+
+                        {/* Context Tag - Below Title */}
+                        {project.context && (
+                            <Box
+                                sx={{
+                                    display: 'inline-flex',
+                                    alignSelf: 'flex-start',
+                                    px: 1.5,
+                                    py: 0.5,
+                                    borderRadius: '6px',
+                                    background: theme.palette.mode === 'dark'
+                                        ? alpha(theme.palette.secondary.main, 0.12)
+                                        : alpha(theme.palette.secondary.main, 0.08),
+                                    border: `1px solid ${alpha(theme.palette.secondary.main, theme.palette.mode === 'dark' ? 0.25 : 0.15)}`,
+                                    backdropFilter: 'blur(8px)',
+                                }}
+                            >
+                                <Typography
+                                    variant="caption"
+                                    sx={{
+                                        fontWeight: 600,
+                                        color: 'secondary.main',
+                                        fontSize: '0.6875rem',
+                                        letterSpacing: '0.08em',
+                                        textTransform: 'uppercase',
+                                        lineHeight: 1,
+                                    }}
+                                >
+                                    {project.context}
+                                </Typography>
+                            </Box>
+                        )}
+
+                        {/* Description */}
                         <Typography
                             variant="body2"
                             sx={{
@@ -155,6 +174,7 @@ export function ProjectCard(project: Project) {
                         </Typography>
                     </Stack>
 
+                    {/* Technologies Section */}
                     <Box sx={{ mt: 'auto' }}>
                         <Divider sx={{ mb: 2, borderColor: alpha(theme.palette.divider, 0.4) }} />
                         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
