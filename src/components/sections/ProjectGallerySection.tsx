@@ -25,7 +25,7 @@ export function ProjectGallerySection({ projects }: ProjectGallerySectionProps) 
             const matchesSearch =
                 !search ||
                 project.title.toLowerCase().includes(search.toLowerCase()) ||
-                project.description.toLowerCase().includes(search.toLowerCase()) ||
+                project.summary.toLowerCase().includes(search.toLowerCase()) ||
                 project.technologies.some((tech) =>
                     tech.toLowerCase().includes(search.toLowerCase())
                 );

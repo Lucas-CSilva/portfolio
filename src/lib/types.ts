@@ -3,7 +3,7 @@ export type ProjectStatus = 'completed' | 'in-progress' | 'to-do';
 export interface Project {
     id: string;
     title: string;
-    description: string;
+    summary: string;
     status: ProjectStatus;
     technologies: string[];
     category?: ProjectCategory;

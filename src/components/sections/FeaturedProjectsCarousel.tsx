@@ -362,7 +362,7 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
                                                                 mt: 1,
                                                             }}
                                                         >
-                                                            {project.description}
+                                                            {project.summary}
                                                         </Typography>
                                                     </Stack>
                                                     <Stack spacing={2}>

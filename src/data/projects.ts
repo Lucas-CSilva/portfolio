@@ -4,7 +4,7 @@ export const projects: Project[] = [
     {
         id: 'ispitch',
         title: 'isPitch: AI Oratory Analysis',
-        description: 'Plataforma inteligente para análise de oratória e comunicação. Utiliza OpenAI Whisper para transcrição automática e spaCy (NLP) para identificar vícios de linguagem e pausas, oferecendo feedback técnico visual para evolução da fala.',
+        summary: 'Plataforma inteligente para análise de oratória e comunicação. Utiliza OpenAI Whisper para transcrição automática e spaCy (NLP) para identificar vícios de linguagem e pausas, oferecendo feedback técnico visual para evolução da fala.',
         technologies: ['Next.js', 'FastAPI', 'Python', 'OpenAI Whisper', 'Docker'],
         context: 'Full Stack & AI',
         order: 1,
@@ -15,7 +15,7 @@ export const projects: Project[] = [
     {
         id: 'janus',
         title: 'Janus: Global Narrative Intelligence',
-        description: 'Plataforma distribuída para análise de narrativas midiáticas em tempo real. Utiliza Arquitetura Kappa, NLP para detecção de viés e Grafos de Conhecimento para visualizar dissonância semântica global.',
+        summary: 'Plataforma distribuída para análise de narrativas midiáticas em tempo real. Utiliza Arquitetura Kappa, NLP para detecção de viés e Grafos de Conhecimento para visualizar dissonância semântica global.',
         technologies: ['Kafka', 'Python', 'Neo4j', 'Spring Web Flux', 'MongoDB'],
         context: 'Data Engineering & AI',
         order: 2,
@@ -26,7 +26,7 @@ export const projects: Project[] = [
     {
         id: 'portfolio',
         title: 'Portfolio',
-        description: 'Este portfólio. Uma aplicação SPA moderna focada em Developer Experience e Acessibilidade. Implementa design system Nord, filtragem via URL-state, arquitetura modular e pontuação máxima no Lighthouse.',
+        summary: 'Este portfólio. Uma aplicação SPA moderna focada em Developer Experience e Acessibilidade. Implementa design system Nord, filtragem via URL-state, arquitetura modular e pontuação máxima no Lighthouse.',
         technologies: ['Next.js', 'TypeScript', 'Tailwind', 'Material UI'],
         context: 'Frontend Architecture',
         order: 3,
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     {
         id: 'pascal-compiler',
         title: 'Pascal Compiler',
-        description: 'Compilador construído do zero em C para um subconjunto da linguagem Pascal. Implementa analisadores léxico, sintático e semântico, incluindo gerenciamento de tabela de símbolos e detecção de erros.',
+        summary: 'Compilador construído do zero em C para um subconjunto da linguagem Pascal. Implementa analisadores léxico, sintático e semântico, incluindo gerenciamento de tabela de símbolos e detecção de erros.',
         technologies: ['C', 'Compiler Design', 'Make', 'Data Structures'],
         context: 'Systems Programming',
         order: 4,
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     {
         id: 'cli-calculator',
         title: 'CLI Calculator',
-        description: 'Calculadora de linha de comando robusta capaz de processar expressões matemáticas complexas. Suporta precedência de operadores (PEMDAS), variáveis dinâmicas e análise sintática recursiva.',
+        summary: 'Calculadora de linha de comando robusta capaz de processar expressões matemáticas complexas. Suporta precedência de operadores (PEMDAS), variáveis dinâmicas e análise sintática recursiva.',
         technologies: ['C', 'Parser Logic', 'CLI'],
         context: 'Tools',
         order: 5,
@@ -59,7 +59,7 @@ export const projects: Project[] = [
     {
         id: 'assembly-embedded-system',
         title: 'Embedded Assembly Control',
-        description: 'Sistema de baixo nível desenvolvido em Assembly. Controla interrupções de hardware, cronômetros, display de LEDs e interação via terminal, demonstrando gestão direta de memória e registradores.',
+        summary: 'Sistema de baixo nível desenvolvido em Assembly. Controla interrupções de hardware, cronômetros, display de LEDs e interação via terminal, demonstrando gestão direta de memória e registradores.',
         technologies: ['Assembly', 'Hardware Interrupts', 'Low-level'],
         context: 'Embedded Systems',
         order: 6,

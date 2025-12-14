@@ -154,7 +154,7 @@ export function ProjectCard(project: Project) {
                             </Box>
                         )}
 
-                        {/* Description */}
+
                         <Typography
                             variant="body2"
                             sx={{
@@ -168,7 +168,7 @@ export function ProjectCard(project: Project) {
                                 fontSize: { xs: '0.875rem', md: '0.9rem' },
                             }}
                         >
-                            {project.description}
+                            {project.summary}
                         </Typography>
                     </Stack>
 

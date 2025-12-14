@@ -24,7 +24,7 @@ export function filterProjects(
         filtered = filtered.filter(
             (project) =>
                 project.title.toLowerCase().includes(searchLower) ||
-                project.description.toLowerCase().includes(searchLower) ||
+                project.summary.toLowerCase().includes(searchLower) ||
                 project.technologies.some(tech => tech.toLowerCase().includes(searchLower))
         );
     }
