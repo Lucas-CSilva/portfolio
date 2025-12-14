@@ -23,7 +23,10 @@ import {
 } from '@mui/icons-material';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
+import { useRouter } from 'next/navigation';
 import type { Project } from '@/lib/types';
+import { StatusBadge } from '../projects/StatusBadge';
+import { generateSlug } from '@/lib/projects';
 
 interface FeaturedProjectsCarouselProps {
     projects: Project[];
@@ -32,6 +35,7 @@ interface FeaturedProjectsCarouselProps {
 export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselProps) {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+    const router = useRouter();
     
     const [selectedIndex, setSelectedIndex] = React.useState(0);
     const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
@@ -87,6 +91,11 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
     }, [emblaApi, onSelect]);
 
     const featuredProjects = projects.filter((p) => p.featured);
+
+    const handleProjectClick = (project: Project) => {
+        const slug = generateSlug(project.title);
+        router.push(`/projects/${slug}`);
+    };
 
     if (featuredProjects.length === 0) {
         return null;
@@ -230,12 +239,28 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
                             {featuredProjects.map((project, index) => (
                                 <Box
                                     key={project.id}
+                                    onClick={() => handleProjectClick(project)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            handleProjectClick(project);
+                                        }
+                                    }}
+                                    tabIndex={0}
+                                    role="button"
+                                    aria-label={`View ${project.title} details`}
                                     sx={{
                                         flex: '0 0 100%',
                                         minWidth: 0,
                                         display: 'flex',
                                         justifyContent: 'center',
                                         py: { xs: 1, md: 2 },
+                                        cursor: 'pointer',
+                                        '&:focus-visible': {
+                                            outline: `2px solid ${theme.palette.primary.main}`,
+                                            outlineOffset: 4,
+                                            borderRadius: 3,
+                                        },
                                     }}
                                 >
                                     <Card
@@ -302,20 +327,22 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
                                                 }}
                                             >
                                                 <Stack spacing={{ xs: 3, md: 3.5 }} sx={{ flex: 1 }}>
-                                                    {/* Project Header */}
                                                     <Stack spacing={1.5}>
-                                                        <Typography
-                                                            variant="h4"
-                                                            sx={{
-                                                                fontSize: { xs: '1.5rem', sm: '1.75rem', md: '1.875rem', lg: '2rem' },
-                                                                fontWeight: 700,
-                                                                letterSpacing: '-0.02em',
-                                                                color: 'text.primary',
-                                                                lineHeight: 1.2,
-                                                            }}
-                                                        >
-                                                            {project.title}
-                                                        </Typography>
+                                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexWrap: 'wrap' }}>
+                                                            <Typography
+                                                                variant="h4"
+                                                                sx={{
+                                                                    fontSize: { xs: '1.5rem', sm: '1.75rem', md: '1.875rem', lg: '2rem' },
+                                                                    fontWeight: 700,
+                                                                    letterSpacing: '-0.02em',
+                                                                    color: 'text.primary',
+                                                                    lineHeight: 1.2,
+                                                                }}
+                                                            >
+                                                                {project.title}
+                                                            </Typography>
+                                                            <StatusBadge status={project.status} size="medium" />
+                                                        </Box>
                                                         {project.context && (
                                                             <Typography 
                                                                 variant="body2" 
@@ -339,7 +366,7 @@ export function FeaturedProjectsCarousel({ projects }: FeaturedProjectsCarouselP
                                                         >
                                                             {project.description}
                                                         </Typography>
-                                                    </Stack>                                                    {/* Technology Stack */}
+                                                    </Stack>
                                                     <Stack spacing={2}>
                                                         <Typography
                                                             variant="overline"

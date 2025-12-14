@@ -56,10 +56,10 @@ export function Header() {
                 background: isScrolled
                     ? theme.palette.mode === 'dark'
                         ? `linear-gradient(180deg, ${alpha(theme.palette.background.default, 0.9)} 0%, ${alpha(theme.palette.background.paper, 0.8)} 100%)`
-                        : alpha('#ffffff', 0.9)
+                        : alpha(theme.palette.background.default, 0.9)
                     : theme.palette.mode === 'dark'
                         ? alpha(theme.palette.background.default, 0.4)
-                        : alpha('#ffffff', 0.4),
+                        : alpha(theme.palette.background.default, 0.4),
                 boxShadow: isScrolled
                     ? `0 4px 24px ${alpha(theme.palette.common.black, theme.palette.mode === 'dark' ? 0.3 : 0.05)}`
                     : 'none',

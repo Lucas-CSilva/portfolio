@@ -1,4 +1,13 @@
-import type { Project, Category } from './types';
+import type { Project, Category, ProjectStatus } from './types';
+
+export function getStatusLabel(status: ProjectStatus): string {
+    const labels: Record<ProjectStatus, string> = {
+        'completed': 'Completed',
+        'in-progress': 'In Progress',
+        'to-do': 'To Do',
+    };
+    return labels[status];
+}
 
 export function filterProjects(
     projects: Project[],
@@ -55,4 +64,29 @@ export function getCategories(projects: Project[]): Category[] {
             slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
         }))
         .sort((a, b) => b.count - a.count);
+}
+
+export function generateSlug(title: string): string {
+    return title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+}
+
+
+export function validateSlugUniqueness(
+    projects: Project[],
+    slug: string,
+    excludeId?: string
+): boolean {
+    return !projects.some(
+        (project) =>
+            generateSlug(project.title) === slug &&
+            project.id !== excludeId
+    );
+}
+
+
+export function findProjectBySlug(projects: Project[], slug: string): Project | undefined {
+    return projects.find((project) => generateSlug(project.title) === slug);
 }

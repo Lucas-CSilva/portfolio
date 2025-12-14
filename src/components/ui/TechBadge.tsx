@@ -1,3 +1,5 @@
+'use client';
+
 import { Chip } from '@mui/material';
 
 interface TechBadgeProps {

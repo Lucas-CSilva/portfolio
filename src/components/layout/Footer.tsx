@@ -14,7 +14,7 @@ export function Footer() {
                 borderTop: `1px solid ${alpha(theme.palette.divider, 0.3)}`,
                 background: theme.palette.mode === 'dark'
                     ? `linear-gradient(180deg, ${alpha(theme.palette.background.default, 0.8)} 0%, ${alpha(theme.palette.background.paper, 0.9)} 100%)`
-                    : alpha('#ffffff', 0.8),
+                    : alpha(theme.palette.background.default, 0.8),
                 backdropFilter: 'blur(20px)',
                 position: 'relative',
             }}

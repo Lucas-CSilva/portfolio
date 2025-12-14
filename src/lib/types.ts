@@ -1,7 +1,10 @@
+export type ProjectStatus = 'completed' | 'in-progress' | 'to-do';
+
 export interface Project {
     id: string;
     title: string;
     description: string;
+    status: ProjectStatus;
     technologies: string[];
     category?: ProjectCategory;
     context?: string;
@@ -11,6 +14,9 @@ export interface Project {
     repoUrl?: string;
     order: number;
     featured?: boolean;
+    images?: string[];
+    createdAt?: string | Date;
+    updatedAt?: string | Date;
 }
 
 export interface Technology {
