@@ -2,7 +2,7 @@
 
 import { Box, useTheme, useMediaQuery, alpha } from '@mui/material';
 import { useRouter } from 'next/navigation';
-import type { Project } from '@/lib/types';
+import type { Project } from '@/types';
 import { useCarousel } from './carousel/useCarousel';
 import { CarouselHeader } from './carousel/CarouselHeader';
 import { CarouselCard } from './carousel/CarouselCard';

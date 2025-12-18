@@ -1,6 +1,11 @@
-import type { Project } from '@/lib/types';
+/**
+ * Project data source
+ * Contains the raw project data
+ */
 
-export const projects: Project[] = [
+import type { Project } from '@/types';
+
+export const projectsData: Project[] = [
     {
         id: 'ispitch',
         title: 'isPitch: AI Oratory Analysis',

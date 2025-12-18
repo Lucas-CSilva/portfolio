@@ -2,8 +2,8 @@
 
 import { Box, alpha, useTheme } from '@mui/material';
 import { CheckCircle2, Clock, Circle } from 'lucide-react';
-import type { ProjectStatus } from '@/lib/types';
-import { getStatusLabel } from '@/lib/projects';
+import type { ProjectStatus } from '@/types';
+import { getStatusLabel } from '@/lib/project-helpers';
 
 interface StatusBadgeProps {
     status: ProjectStatus;

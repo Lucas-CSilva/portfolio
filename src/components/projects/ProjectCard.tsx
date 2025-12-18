@@ -1,6 +1,6 @@
 'use client';
 
-import type { Project } from '@/lib/types';
+import type { Project } from '@/types';
 import { Card, CardContent, Box, Typography, Divider, useTheme, alpha, Stack, Chip } from '@mui/material';
 import { ArrowUpRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';

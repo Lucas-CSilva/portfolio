@@ -9,7 +9,7 @@ import {
     alpha,
     useTheme,
 } from '@mui/material';
-import type { Project } from '@/lib/types';
+import type { Project } from '@/types';
 import { BackButton } from '../ui/BackButton';
 import { ProjectHeader } from './detail/ProjectHeader';
 import { ProjectActions } from './detail/ProjectActions';

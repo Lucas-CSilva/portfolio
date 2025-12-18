@@ -4,9 +4,6 @@ import { Box, Container, Typography, Button, Stack } from '@mui/material';
 import Link from 'next/link';
 import { SearchOff } from '@mui/icons-material';
 
-/**
- * 404 page for invalid project slugs
- */
 export default function ProjectNotFound() {
     return (
         <Container maxWidth="md">

@@ -1,5 +1,5 @@
 import { Box, Typography, Stack, Chip, alpha, useTheme } from '@mui/material';
-import type { Project } from '@/lib/types';
+import type { Project } from '@/types';
 import { StatusBadge } from '../StatusBadge';
 
 interface ProjectHeaderProps {
