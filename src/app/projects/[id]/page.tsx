@@ -1,23 +1,23 @@
 import { notFound } from 'next/navigation';
-import { projects } from '@/data/projects';
-
+import { projectRepository } from '@/repositories';
+import { projectService } from '@/services';
 import { ProjectDetailView } from '@/components/projects/ProjectDetailView';
 import type { Metadata } from 'next';
-import { findProjectById } from '@/lib/projects';
 
 interface ProjectPageProps {
-    params: Promise<{ slug: string }>;
+    params: Promise<{ id: string }>;
 }
 
 export async function generateStaticParams() {
+    const projects = projectRepository.getAll();
     return projects.map((project) => ({
-        slug: project.id,
+        id: project.id,
     }));
 }
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-    const { slug } = await params;
-    const project = findProjectById(projects, slug);
+    const { id } = await params;
+    const project = projectService.getProjectById(id);
 
     if (!project) {
         return {
@@ -38,8 +38,8 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-    const { slug } = await params;
-    const project = findProjectById(projects, slug);
+    const { id } = await params;
+    const project = projectService.getProjectById(id);
 
     if (!project) {
         notFound();

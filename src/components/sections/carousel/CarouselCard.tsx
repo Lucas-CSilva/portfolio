@@ -11,7 +11,7 @@ import {
     alpha,
 } from '@mui/material';
 import { GitHub as GitHubIcon, Launch as LaunchIcon } from '@mui/icons-material';
-import type { Project } from '@/lib/types';
+import type { Project } from '@/types';
 import { StatusBadge } from '../../projects/StatusBadge';
 
 export interface CarouselCardProps {

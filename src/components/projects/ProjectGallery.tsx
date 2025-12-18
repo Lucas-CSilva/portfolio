@@ -1,4 +1,4 @@
-import type { Project } from '@/lib/types';
+import type { Project } from '@/types';
 import { ProjectCard } from './ProjectCard';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { Box, Grid } from '@mui/material';

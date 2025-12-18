@@ -1,6 +1,6 @@
 'use client';
 
-import type { Technology, Category } from '@/lib/types';
+import type { Technology, Category } from '@/types';
 import { useProjectFilter } from '@/lib/hooks/useProjectFilter';
 import { Button, Divider, Box, Chip, Typography, useTheme, alpha, Stack } from '@mui/material';
 import { SearchInput } from './SearchInput';

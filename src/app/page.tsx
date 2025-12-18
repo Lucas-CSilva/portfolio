@@ -1,11 +1,10 @@
 import { AboutSection } from '@/components/sections/AboutSection';
 import { FeaturedProjectsCarousel } from '@/components/sections/FeaturedProjectsCarousel';
 import { ProjectGallerySection } from '@/components/sections/ProjectGallerySection';
-import { projects } from '@/data/projects';
+import { projectRepository } from '@/repositories';
 
 export default async function Home() {
-  // Sort all projects by order
-  const sortedProjects = [...projects].sort((a, b) => a.order - b.order);
+  const sortedProjects = projectRepository.getAll();
 
   return (
     <main className="min-h-screen">

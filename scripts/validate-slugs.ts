@@ -4,15 +4,16 @@
  * Run: npx tsx scripts/validate-slugs.ts
  */
 
-import { projects } from '../src/data/projects';
-import { generateSlug } from '../src/lib/projects';
+import { projectRepository } from '../src/repositories';
+import { slugify } from '../src/utils';
 
 console.log('🔍 Validating project slug uniqueness...\n');
 
+const projects = projectRepository.getAll();
 const slugMap = new Map<string, string[]>();
 
 projects.forEach((project) => {
-    const slug = generateSlug(project.title);
+    const slug = slugify(project.title);
     const existing = slugMap.get(slug) || [];
     existing.push(project.title);
     slugMap.set(slug, existing);

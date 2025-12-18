@@ -1,12 +1,12 @@
 'use client';
 
 import { Box, Typography, useTheme, alpha, Stack } from '@mui/material';
-import type { Project } from '@/lib/types';
+import type { Project } from '@/types';
 import { FilterControls } from '@/components/projects/FilterControls';
 import { ProjectGallery } from '@/components/projects/ProjectGallery';
-import { getTechnologies } from '@/lib/technologies';
-import { getCategories } from '@/lib/projects';
+import { getTechnologies, getCategories } from '@/lib/project-helpers';
 import { useProjectFilter } from '@/lib/hooks/useProjectFilter';
+import { slugify } from '@/utils';
 import { useMemo } from 'react';
 
 interface ProjectGallerySectionProps {
@@ -31,13 +31,13 @@ export function ProjectGallerySection({ projects }: ProjectGallerySectionProps) 
                 );
 
             const matchesTech =
-                !activeTech || project.technologies.some(tech =>
-                    tech.toLowerCase().replace(/[^a-z0-9]+/g, '-') === activeTech
+                !activeTech || project.technologies.some(tech => 
+                    slugify(tech) === activeTech
                 );
 
             const matchesCategory =
                 !activeCategory ||
-                (project.context && project.context.toLowerCase().replace(/[^a-z0-9]+/g, '-') === activeCategory);
+                (project.context && slugify(project.context) === activeCategory);
 
             return matchesSearch && matchesTech && matchesCategory;
         });

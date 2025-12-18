@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useState, useTransition } from 'react';
-import type { FilterState } from '@/lib/types';
+import type { FilterState } from '@/types';
 
 export function useProjectFilter() {
     const router = useRouter();

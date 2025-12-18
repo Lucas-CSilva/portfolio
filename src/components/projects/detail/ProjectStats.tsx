@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Grid, Stack, Typography, Box } from '@mui/material';
 import { CheckCircle as CheckCircleIcon } from '@mui/icons-material';
-import type { Project } from '@/lib/types';
-import { getStatusLabel } from '@/lib/projects';
+import type { Project } from '@/types';
+import { getStatusLabel } from '@/lib/project-helpers';
 
 interface ProjectStatsProps {
     status: Project['status'];
